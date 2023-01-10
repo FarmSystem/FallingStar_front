@@ -11,7 +11,8 @@ import logoTitle2 from '../../assets/img/LogoTitle.png';
 // ㅇㅇ
 const Wrapper = styled.div`
     position: absolute;
-    left: 0;
+    padding: 0
+    margin: 0
     top: 0;
     width: 100%;
     height: 100px;
@@ -91,8 +92,7 @@ const LogoMenuText = styled.div`
 //background: rgba(254, 254, 254, 0.5);
 // ㅇㅇ
 const NavContainer = styled.div`
-position:absolute;
-    left: 0;
+    position:absolute;
     top: 50px;
     width: 100%;
     height: 50px;
@@ -144,7 +144,6 @@ const LogoTitle2 = styled.img`
 const Navbar = () => {
     return (
         <Wrapper>
-
             <LogoContainer>
                 <Logo>
                     <LogoDetail>
