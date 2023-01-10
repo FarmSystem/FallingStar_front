@@ -1,6 +1,7 @@
 import GlobalStyle from "./styles/GlobalStyle";
 import { Routes, Route,Outlet } from 'react-router-dom';
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 
 //페이지
 import Mainpage from "./pages/Mainpage"; //메인페이지
@@ -37,6 +38,7 @@ const Layout = ()=>{
     <>
     <Navbar />
     <Outlet />
+    <Footer />
     </>
   )
 }
