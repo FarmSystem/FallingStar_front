@@ -3,10 +3,15 @@ import styled from 'styled-components';
 import Logo from '../../../src/assets/img/Logo.png';
 
 const Foot = styled.div`
-position:absolute;
-bottom:0;
+position:relative;
+bottom:0px;
+height: 100px;
 width: 100%;
 text-align: center;
+background-color: #F5F5F5;
+
+margin-bottom:80px;
+
 `
 
 const Leftbox = styled.div`
@@ -34,7 +39,7 @@ text-align: left;
 const Line = styled.hr`
 border: 0.1px solid #000000;
 position:absolute;
-bottom:20px;
+bottom:91px;
 width: 100%;
 `
 
