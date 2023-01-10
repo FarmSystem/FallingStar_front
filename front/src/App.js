@@ -1,9 +1,15 @@
 import GlobalStyle from "./styles/GlobalStyle";
-import { Routes, Route,Outlet } from 'react-router-dom';
-import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
+import { Routes, Route,Outlet, useLocation } from 'react-router-dom';
+import {useState} from 'react';
+import {useSelector, useDispatch} from "react-redux"
+
+
+//contextAPI
+import { ColorContext } from "./context/ColorContext";
 
 //페이지
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 import Mainpage from "./pages/Mainpage"; //메인페이지
 import Introduce from "./pages/Introduce"; //소개페이지
 //유언장 검색
@@ -44,9 +50,22 @@ const Layout = ()=>{
 }
 
 function App() {
+  let Page = useLocation()
+  let a = useSelector((state) => {return state.color})
+  let dispatch = useDispatch()
+  console.log(a.page)
+  let isPage =  a.map((dum)=>{
+    if(dum.page == Page){
+      return dum.color
+    }
+    console.log("map"+dum.color)
+  })
+  console.log("현재 페이지"+Page+" 색상" + isPage)
+
   return (
     <>
-    <GlobalStyle/>
+    <GlobalStyle />
+    
     <Routes>
     <Route path="/" element={<Layout />}>  //상위 라우터 요걸해줘야 레이아웃 적용됨
         <Route index element={<Mainpage />} />

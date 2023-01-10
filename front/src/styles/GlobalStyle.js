@@ -1,11 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
+
 
 export const GlobalStyle = createGlobalStyle`
     html {
         -webkit-touch-callout:none;
         -webkit-user-select:none;
         -webkit-tap-highlight-color:rgba(0,0,0,0);
-        font-size: 0.9rem;
     }
     @font-face {
         font-family: 'JejuMyeongjo';
@@ -20,7 +21,14 @@ export const GlobalStyle = createGlobalStyle`
     }
     body {
         width: 100%;
+        min-height: 100%;
+        margin: 0;
+        background: #F5F5F5;
     }
-
+    .App {
+        display: flex;
+        height: 100vh;
+        flex-direction: column;
+    }
 `;
 export default GlobalStyle
