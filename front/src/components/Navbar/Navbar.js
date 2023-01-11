@@ -48,6 +48,7 @@ const LogoTitle = styled.div`
     font-weight: 400;
     font-size: 28px;
     color: #FFFFFF;
+    cursor: pointer;
 `;
 
 const LogoDetailText = styled.div`
@@ -67,6 +68,7 @@ const LogoDetail = styled.div`
     ont-weight: 400;
     font-size: 10px;
     color: white;
+    cursor: pointer;
 `;
 
 const LogoMenu = styled.div`
@@ -139,6 +141,7 @@ const LogoTitle2 = styled.img`
     width: 62px;
     height: 26px;
     align-item: center;
+    cursor: pointer;
 `;
 
 const Navbar = () => {
@@ -147,12 +150,14 @@ const Navbar = () => {
 
             <LogoContainer>
                 <Logo>
-                    <LogoDetail>
+                    <LogoDetail onClick={() => (window.location.href = './')}>
                         <LogoDetailText>블록체인 유언장</LogoDetailText>
                         <LogoDetailText>법률 커뮤니티</LogoDetailText>
                     </LogoDetail>
-                    <LogoTitle>별세</LogoTitle>
-                    <LogoTitle2 src={logoTitle2} />
+                    <LogoTitle onClick={() => (window.location.href = './')}>
+                        별세</LogoTitle>
+                    <LogoTitle2 onClick={() => (window.location.href = './')}
+                        src={logoTitle2} />
                 </Logo>
 
                 <LogoMenu>
