@@ -23,31 +23,6 @@ width: 100%;
 height: 370px;
 `
 
-const HelpIconWrapper = styled.div`
-width: 100%;
-height: 130px;
-display: flex;
-flex-direction: row;
-`
-
-const HelpIconContainer1 = styled.div`
-padding: 0 0 0 58.2%;
-width: 230px;
-height: 160px;
-text-align: center;
-z-index: 1;
-
-position: absolute;
-`
-
-const HelpIconContainer2 = styled.div`
-padding: 0 0 0 66%;
-width: 260px;
-height: 160px;
-text-align: center;
-
-`
-
 const ButtonContainer = styled.div`
 width: 100%;
 height: 80px;
@@ -56,17 +31,6 @@ text-align: center;
 
 const StepImg = styled.img`
 width: 910px;
-`
-
-/*
-:hover {   
-    background:url("../../assets/img/MouseOverHelpIcon1.png");
-    background-size: cover;
-}
-*/
-
-const MouseOverHelpIcon1 = styled.img`
-padding-left: 966px;
 `
 
 const Button = styled.button`
@@ -91,56 +55,7 @@ cursor: pointer;
 `;
 
 
-const Help1 = () => {
-    const [isListHover, setIsListHover] = useState(false);
-    return (
-        <li
-            onMouseOver={() => setIsListHover(true)}
-            onMouseOut={() => setIsListHover(false)}
-        >
-            <img
-                src={isListHover ? mouseOverhelpIcon1 : helpIcon1}
-                alt="도움말 1"
-            />
-        </li>
-    )
-}
-
-const Help2 = () => {
-    const [isListHover, setIsListHover] = useState(false);
-    return (
-        <li
-            onMouseOver={() => setIsListHover(true)}
-            onMouseOut={() => setIsListHover(false)}
-        >
-            <img
-                src={isListHover ? mouseOverhelpIcon2 : helpIcon2}
-                alt="도움말 2"
-            />
-        </li>
-    )
-}
-
 function WillWriting_notice() {
-
-    /*
-    
-    <HelpIcon>
-        <img src="../../assets/img/HelpIcon.png" id="help1" />
-    </HelpIcon>
-
-    var help1 = document.getElementById("help1");
-    help1.addEventListener("mouseover", function () {
-        help1.src = "../../assets/img/MouseOverHelpIcon1.png";
-    });
-
-    help1.addEventListener("mouseout", function () {
-        help1.src = "../../assets/img/HelpIcon.png";
-    });
-    
-    */
-
-
     return (
         <Background>
             <br /><br /><br /><br /><br />
@@ -150,14 +65,7 @@ function WillWriting_notice() {
                 <StepImg src={stepImg} />
             </ImgContainer>
 
-            <HelpIconWrapper>
-                <HelpIconContainer1>
-                    <Help1></Help1>
-                </HelpIconContainer1>
-                <HelpIconContainer2>
-                    <Help2></Help2>
-                </HelpIconContainer2>
-            </HelpIconWrapper>
+            
 
 
             <ButtonContainer>

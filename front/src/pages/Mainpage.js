@@ -112,6 +112,7 @@ padding-top: 50px;
 function Mainpage() {
     return (
         <Main>
+            <br/><br/><br/><br/><br/><br/>
             <TitleText>당신의 마지막 말이 소중히 보관되길,</TitleText>
             <br/>
             <Title><Img src={Logo}/></Title>

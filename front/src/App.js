@@ -50,18 +50,6 @@ const Layout = ()=>{
 }
 
 function App() {
-  let Page = useLocation()
-  let a = useSelector((state) => {return state.color})
-  let dispatch = useDispatch()
-  console.log(a.page)
-  let isPage =  a.map((dum)=>{
-    if(dum.page == Page){
-      return dum.color
-    }
-    console.log("map"+dum.color)
-  })
-  console.log("현재 페이지"+Page+" 색상" + isPage)
-
   return (
     <>
     <GlobalStyle />

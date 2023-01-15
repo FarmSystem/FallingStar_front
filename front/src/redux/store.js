@@ -1,65 +1,76 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 
-let color = createSlice({
-    name: 'color',
-    initialState: [
-        //main
-        {
-            page: '/',
-            bgColor:'linear-gradient(180deg, #6D6B64 18.75%, rgba(82, 82, 82, 0.21) 100%)'
+let will = createSlice({
+    name: 'will',
+    initialState: {
+        birth: '010725-1234567',
+        question1: '일반 3일장 장례식',
+        question2: [
+            {
+                name: '이여원',
+                relationship: '녀',
+                phone: '010-1234-1234'
+            },
+        ],
+        question3: '봉안묘',
+        question4: false,
+        question5: true,
+        family: {
+            child:'이여원, 이여원',
+            parents:'이여원, 이여원',
+            sibile:'이여원, 이여원',
+            uncle:'이여원, 이여원',
+            spouse:'이여원, 이여원'
         },
-
-        //introduce
-        {
-            page: '/introduce',
-            bgColor:'#FAFAFA'
+        property:{
+            house: 1,
+            bond:2,
+            patent: 0,
+            car: 0
         },
-        //write
-        {
-            page: '/WillWriting_notice',
-            bgColor:'#E9EAEC'
-        },
-        //search
-        {
-            page: '/WillSearch',
-            bgColor:'#E7E5E0'
-        },
-        //lawayer
-        {
-            page: '/Lawyer',
-            bgColor:'#F8F8F8'
-        },
-        //Question
-        {
-            page: '/Question',
-            bgColor:'#FFFFFF'
-        },
-        //login
-        {
-            page: 'login',
-            bgColor:'#FFFFFF'
-        }    
-    ],
+        text: '안녕',
+        open: {
+            opener:'이여원',
+            contact: '010-1234-1234',
+            relation: '아들'
+        }
+    }
+    ,
     reducers:{
-        addText(state, action){
-            state.push(action.payload)
+        Question1(state, action){
+            state.question1= action.payload;
         },
+        Question2(state, action){
+            state.question2= action.payload;
+        },
+        Question3(state, action){
+            state.question3= action.payload;
+        },
+        Question4(state, action){
+            state.question4= action.payload;
+        },
+        Question5(state, action){
+            state.question5= action.payload;
+        },
+        Family(state, action){
+            state.family = action.payload;
+        },
+        Property(state, action){
+            state.property = action.payload;
+        },
+        Text(state, action){
+            state.text = action.payload;
+        },
+        Open(state, action){
+            state.open = action.payload;
+        }
     }
 
 })
-export let { addText} = color.actions
-
-let page = createSlice({
-    name: 'page',
-    initialState:
-    {
-        color1: 'pink',
-        color2: 'black'
-    }
-})
+export let { Question1, Question2, Question3, Question4, Question5, Family, Property, Text, Open} = will.actions
 
 export default configureStore({
-    reducer:{
-        color: color.reducer
+    reducer: {
+        will : will.reducer
     }
 })
