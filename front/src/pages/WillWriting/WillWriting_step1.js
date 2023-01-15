@@ -9,8 +9,8 @@ import { Question1, Question2,Question3 } from '../../redux/store';
 
 //이미지 
 import WillWritingTitle from '../../assets/img/WillWritingTitle.png';
-import fileadd from '../../assets/img/Step1_fileadd.png';
 import stepImg from '../../assets/img/WillWriting_opener.png';
+import fileadd from '../../assets/img/Step1_fileadd.png';
 import cemetry1 from '../../assets/img/cemetry1.png';
 import cemetry2 from '../../assets/img/cemetry2.png';
 import cemetry3 from '../../assets/img/cemetry3.png';
@@ -368,7 +368,7 @@ function WillWriting_step1() {
                     저만의 원하는 방식이 따로 있어요.                
                 </ChooseBox2>
                 
-                <InputBox value = {inputvalue} type="text" placeholder="이 외의 희망사항을 남겨주세요." onChange={(event)=> {setinputvalue(event.target.value); {setQ3(inputvalue)}}}/>
+                <InputBox value = {inputvalue} type="text" placeholder="이 외의 희망사항을 남겨주세요." onChange={(event)=> {setinputvalue(event.target.value); setQ3(inputvalue)}}/>
             </Box>
 
 
@@ -376,7 +376,7 @@ function WillWriting_step1() {
                 <PrevButton onClick={() => (window.location.href = '/WillWriting_notice')}>
                     이전으로</PrevButton>
                 <NextButton 
-                onClick={() => { 
+                onClick={() => { window.location.href = '/WillWriting_step2';
                 dispatch(Question1(Q1));
                 dispatch(Question2(inviteArrary));
                 dispatch(Question3(Q3))}}>
