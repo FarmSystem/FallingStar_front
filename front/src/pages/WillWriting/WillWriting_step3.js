@@ -180,8 +180,8 @@ function WillWriting_step3() {
                 <WCss.Img src={WillWritingTitle} />
                 <WCss.Img src={stepImg}/>
                 <WCss.Box>
-                    <Title>상속관계정리서</Title>
-                    <Line/>
+                    <WCss.Title>상속관계정리서</WCss.Title>
+                    <WCss.Line/>
                     <SmallText>민법상 유산으로 인정되는 재산목록을 정리해주세요.</SmallText>
                     <ButtonImg><Img2 src = {notice}/></ButtonImg>
                     <br />
