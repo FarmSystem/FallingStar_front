@@ -182,6 +182,7 @@ line-height: 18px;
 text-align: center;
 
 color: #000000;
+
 &: focus{
     background: #FFE380; //버튼색
 }
@@ -234,7 +235,7 @@ function WillWriting_step1() {
                 <ChooseBox onClick={()=>(setQ1('종교장'))}>제가 믿는 종교에 따라 진행하고 싶어요.<br/>(종교장)</ChooseBox>
                 <ChooseBox onClick={()=>(setQ1('희망방식 별도'))}>저만의 희망하는 장례방식이 있어요.<br/>(기타)</ChooseBox>
 
-                <InputBox value = {inputvalue} type="text" placeholder="이 외의 희망사항을 남겨주세요." onChange={(event)=> {setinputvalue(event.target.value); {setQ3(inputvalue)}}}/>
+                <InputBox value = {inputvalue} type="text" placeholder="이 외의 희망사항을 남겨주세요." onChange={(event)=> {setinputvalue(event.target.value); {setQ1(inputvalue)}}}/>
             <WCss.Question>질문2. 장례에 초대하고 싶으신 분이 있으신가요?</WCss.Question>
             <SmallBox>
                 <Line> </Line>
@@ -288,7 +289,7 @@ function WillWriting_step1() {
                     저만의 원하는 방식이 따로 있어요.                
                 </ChooseBox2>
                 
-                <InputBox value = {inputvalue2} type="text" placeholder="이 외의 희망사항을 남겨주세요." onChange={(event)=> {setinputvalue2(event.target.value); setQ3(inputvalue)}}/>
+                <InputBox value = {inputvalue2} type="text" placeholder="이 외의 희망사항을 남겨주세요." onChange={(event)=> {setinputvalue2(event.target.value); setQ3(inputvalue2)}}/>
             </WCss.Box>
 
 
