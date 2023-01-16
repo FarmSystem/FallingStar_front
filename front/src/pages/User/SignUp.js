@@ -85,6 +85,7 @@ const ButtonContainer = styled.div`
   width: 100%
   height: 120px;
   margin: 12px;
+  padding: 0 0 10px 0;
 `;
 
 const StyledButton = styled.button`
