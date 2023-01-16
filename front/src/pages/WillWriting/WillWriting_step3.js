@@ -5,11 +5,14 @@ import InviteBox from '../../components/Invite/Invite';
 import * as WCss from '../../styles/WillWritinCss';
 //리덕스
 import {useSelector, useDispatch} from "react-redux"
-import { Question1, Question2, Question3 } from '../../redux/store';
+import { Family } from '../../redux/store';
+import axios from 'axios';
 
 //이미지 
 import WillWritingTitle from '../../assets/img/WillWritingTitle.png';
-import stepImg from '../../assets/img/WillWriting_opener.png';
+import stepImg from '../../assets/img/WillWriting_step3.png';
+import notice from '../../assets/img/notice.png';
+
 
 const SmallBox = styled.div`
 width: 90%;
@@ -103,10 +106,34 @@ margin-left: 13px;
 border: 0.1px solid;
 padding: 4px;
 `
-
 function WillWriting_step3() {
+    //배열 만들기
+    const [FamilyArray, setFamilyArray] = useState({ 
+        child:'',
+        parents:'',
+        sibile:'',
+        uncle:'',
+        spouse:''
+    });
+    //인풋 값 저장변수 -> useState 사용하기..
+    const [Child, setchild] = useState(' ');
+    const [Parents, setparents] = useState('');
+    const [Sibile, setsibile] = useState('');
+    const [Uncle, setuncle] = useState('');
+    const [Spouse, setspouse] = useState('');
+
+    //배열 값 바꾸는 함수 -> 이게 문제 
+    const addFamily =()=>{
+        setFamilyArray({child: Child, parents: Parents, sibile:Sibile, uncle:Uncle, spouse:Spouse});
+    }
+
+    //리덕스
+    let a = useSelector((state) => { return state } )
+    let dispatch = useDispatch()
+
     return (
         <WCss.Background>
+            {console.log(a)}
             <WCss.Container>
                 <WCss.Img src={WillWritingTitle} />
                 <WCss.Img src={stepImg}/>
@@ -149,17 +176,16 @@ function WillWriting_step3() {
                     </WCss.TableBox>
                 
                 </WCss.Box>
-
                 <WCss.ButtonContainer>
-                <WCss.PrevButton onClick={() => (window.location.href = '/WillWriting_notice')}>
-                    이전으로</WCss.PrevButton>
-                <WCss.NextButton 
-                onClick={() => { window.location.href = '/WillWriting_step4';}}>
-                    다음으로</WCss.NextButton>
-            </WCss.ButtonContainer>
-                </WCss.Box>
+                    <WCss.PrevButton onClick={() => (window.location.href = '/WillWriting_step2')}>
+                        이전으로</WCss.PrevButton>
+                    <WCss.NextButton 
+                    onClick={() => { window.location.href = '/WillWriting_step4';
+                        addFamily();dispatch(Family(FamilyArray));console.log(FamilyArray)}}>
+                        다음으로</WCss.NextButton>
+                    
+                </WCss.ButtonContainer>
             </WCss.Container>
-
         </WCss.Background>
         
     )
