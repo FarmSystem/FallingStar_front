@@ -9,16 +9,11 @@ import { Question1, Question2, Question3 } from '../../redux/store';
 
 //이미지 
 import WillWritingTitle from '../../assets/img/WillWritingTitle.png';
-import stepImg from '../../assets/img/WillWriting_recording.png';
+import stepImg from '../../assets/img/WillWriting_opener.png';
 
 function WillWriting_recording() {
-    //리덕스
-    let a = useSelector((state) => { return state } )
-    let dispatch = useDispatch()
-
     return (
         <WCss.Background>
-            {console.log(a)}
             <WCss.Container>
                 <WCss.Img src={WillWritingTitle} />
                 <WCss.Img src={stepImg}/>

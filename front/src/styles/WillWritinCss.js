@@ -24,7 +24,7 @@ background-color: white;
 margin: 20px;
 border-radius: 10px;
 padding: 10px;
-width:90%;
+max-width:90%;
 display: inline-block;
 `
 export const Question = styled.div`
@@ -84,23 +84,4 @@ margin: 15px;
     color: white;
     border: none;
 }
-`
-
-
-//step3,4,5
-export const Title = styled.div`
-font-family: 'Inter';
-font-style: normal;
-font-weight: 800;
-font-size: 20px;
-line-height: 30px;
-text-align: center;
-
-color: #000000;
-margin-top:30px;
-`
-export const Line = styled.hr`
-border: 0.2px solid #000000;
-width: 110px;
-
 `
