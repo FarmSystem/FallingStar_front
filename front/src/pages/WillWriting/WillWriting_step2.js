@@ -46,7 +46,7 @@ line-height: 18px;
 text-align: center;
 
 color: #000000;
-&: focus{
+&: hover{
     background: #FFE380; //버튼색
 }
 `
@@ -66,6 +66,7 @@ font-size: 16px;
 line-height: 27px;
 
 color: #505050;
+display: inline-block;
 
 float: left;
 text-align: left;
@@ -92,7 +93,7 @@ margin-right: 400px;
 margin-left: 70px;
 margin-bottom: 30px;
 
-&: focus{
+&: hover{
     background: black; //버튼색
 }
 `
