@@ -14,22 +14,7 @@ import stepImg from '../../assets/img/WillWriting_step3.png';
 import notice from '../../assets/img/notice.png';
 import searchimg from '../../assets/img/step3img.png';
 
-const Title = styled.div`
-font-family: 'Inter';
-font-style: normal;
-font-weight: 800;
-font-size: 20px;
-line-height: 30px;
-text-align: center;
 
-color: #000000;
-margin-top:30px;
-`
-const Line = styled.hr`
-border: 0.2px solid #000000;
-width: 110px;
-
-`
 const SmallText = styled.div`
 font-family: 'Inter';
 font-style: normal;
@@ -182,8 +167,8 @@ function WillWriting_step4() {
                 <WCss.Img src={WillWritingTitle} />
                 <WCss.Img src={stepImg}/>
                 <WCss.Box>
-                    <Title>상속관계정리서</Title>
-                    <Line/>
+                    <WCss.Title>상속관계정리서</WCss.Title>
+                    <WCss.Line/>
                     <SmallText>민법상 유산으로 인정되는 재산목록을 정리해주세요.</SmallText>
                     <ButtonImg><Img2 src = {notice}/></ButtonImg>
                     <br />
@@ -218,10 +203,10 @@ function WillWriting_step4() {
                     </TableBox>
                 </WCss.Box>
                 <WCss.ButtonContainer>
-                    <WCss.PrevButton onClick={() => (window.location.href = '/WillWriting_step4')}>
+                    <WCss.PrevButton onClick={() => (window.location.href = '/WillWriting_step3')}>
                         이전으로</WCss.PrevButton>
                     <WCss.NextButton 
-                    onClick={() => { window.location.href = '/WillWriting_recording';
+                    onClick={() => { window.location.href = '/WillWriting_step5';
                     addProperty();dispatch(Property(PropertyArray));console.log(PropertyArray)}}>
                         다음으로</WCss.NextButton>
                 </WCss.ButtonContainer>

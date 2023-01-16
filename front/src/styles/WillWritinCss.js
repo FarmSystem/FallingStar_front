@@ -86,3 +86,21 @@ margin: 15px;
 }
 `
 
+
+//step3,4,5
+export const Title = styled.div`
+font-family: 'Inter';
+font-style: normal;
+font-weight: 800;
+font-size: 20px;
+line-height: 30px;
+text-align: center;
+
+color: #000000;
+margin-top:30px;
+`
+export const Line = styled.hr`
+border: 0.2px solid #000000;
+width: 110px;
+
+`
