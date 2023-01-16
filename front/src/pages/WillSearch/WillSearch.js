@@ -4,6 +4,7 @@ import searchLogo from "../../assets/img/SearchLogo.png";
 import searchBarImg from "../../assets/img/SearchBarImg.png";
 
 import willFindImg from "../../assets/img/WillFindImg.png";
+
 // import ModalBasic from "../../components/Modal/ModalBasic";
 
 const Modal = () => {
@@ -239,6 +240,7 @@ function WillSearch() {
           <WillCountText>현재 개의 유언장이 보관되었습니다.</WillCountText>
           <br /> <br />
           <WillFindImg src={willFindImg} />
+
         </ImgContainer>
       </Container>
     </Background>

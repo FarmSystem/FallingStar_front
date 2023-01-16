@@ -6,10 +6,11 @@ import * as WCss from '../../styles/WillWritinCss';
 //리덕스
 import {useSelector, useDispatch} from "react-redux"
 import { Question1, Question2, Question3 } from '../../redux/store';
+import axios from 'axios';
 
 //이미지 
 import WillWritingTitle from '../../assets/img/WillWritingTitle.png';
-import stepImg from '../../assets/img/WillWriting_opener.png';
+import stepImg from '../../assets/img/WillWriting_step3.png';
 
 function WillWriting_step3() {
     return (
