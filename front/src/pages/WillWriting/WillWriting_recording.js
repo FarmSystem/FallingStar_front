@@ -12,8 +12,13 @@ import WillWritingTitle from '../../assets/img/WillWritingTitle.png';
 import stepImg from '../../assets/img/WillWriting_recording.png';
 
 function WillWriting_recording() {
+    //리덕스
+    let a = useSelector((state) => { return state } )
+    let dispatch = useDispatch()
+
     return (
         <WCss.Background>
+            {console.log(a)}
             <WCss.Container>
                 <WCss.Img src={WillWritingTitle} />
                 <WCss.Img src={stepImg}/>
