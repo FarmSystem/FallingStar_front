@@ -13,6 +13,7 @@ import stepImg from '../../assets/img/WillWriting_recording.png';
 import notice from '../../assets/img/notice.png';
 import Record from '../../assets/img/RecordButton.png';
 
+
 const Text = styled.div`
 font-family: 'Inter';
 font-style: normal;
@@ -52,11 +53,9 @@ function WillWriting_recording() {
     //리덕스
     let a = useSelector((state) => { return state } )
     let dispatch = useDispatch()
-
     const click = false;
     return (
         <WCss.Background>
-            {console.log(a)}
             <WCss.Container>
                 <WCss.Img src={WillWritingTitle} />
                 <WCss.Img src={stepImg}/>

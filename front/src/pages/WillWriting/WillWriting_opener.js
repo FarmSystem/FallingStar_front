@@ -9,7 +9,7 @@ import { Question1, Question2, Question3 } from '../../redux/store';
 
 //이미지 
 import WillWritingTitle from '../../assets/img/WillWritingTitle.png';
-import stepImg from '../../assets/img/WillWriting_open.png';
+import stepImg from '../../assets/img/WillWriting_opener.png';
 
 function WillWriting_opener() {
     return (

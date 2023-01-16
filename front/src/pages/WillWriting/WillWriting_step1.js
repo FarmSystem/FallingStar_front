@@ -1,18 +1,15 @@
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import * as WCss from '../../styles/WillWritinCss';
-import { Navigate } from "react-router-dom";
 
 import InviteBox from '../../components/Invite/Invite';
 //리덕스
 import {useSelector, useDispatch} from "react-redux"
 import { Question1, Question2,Question3 } from '../../redux/store';
-import axios from 'axios';
 
 //이미지 
 import WillWritingTitle from '../../assets/img/WillWritingTitle.png';
-import stepImg from '../../assets/img/WillWriting_step1.png';
+import stepImg from '../../assets/img/WillWriting_opener.png';
 import fileadd from '../../assets/img/Step1_fileadd.png';
 import cemetry1 from '../../assets/img/cemetry1.png';
 import cemetry2 from '../../assets/img/cemetry2.png';
@@ -21,6 +18,33 @@ import cemetry4 from '../../assets/img/cemetry4.png';
 import cemetry5 from '../../assets/img/cemetry5.png';
 import cemetry6 from '../../assets/img/cemetry6.png';
 
+
+const Background = styled.body`
+background-color: #E9EAEC;
+padding-bottom: 100px;
+padding-top: 200px;
+min-height:100%
+height: auto;
+text-align: center;
+`
+
+
+const ButtonContainer = styled.div`
+width: 100%;
+height: 80px;
+text-align: center;
+`
+const ImgContainer = styled.div`
+text-align: center;
+width: 100%;
+`
+
+const Img = styled.img`
+margin-top:4000;
+width: 910px;
+text-align: center;
+padding-bottom: 100px;
+`
 
 const Button = styled.button`
 ffont-family: 'Inter';
@@ -48,7 +72,26 @@ border: none;
 }
 `;
 
-
+const Box = styled.div`
+background-color: white;
+margin: 20px;
+border-radius: 10px;
+padding: 10px;
+max-width:90%;
+display: inline-block;
+`
+const Question = styled.div`
+font-family: 'Inter';
+font-style: normal;
+font-weight: 800;
+font-size: 25px;
+line-height: 30px;
+text-align: left;
+margin: 15px;
+margin-left: 30px;
+color: #000000;
+margin-top: 50px;
+`
 
 const ChooseBox = styled.button`
 background: #ECECEC;
@@ -68,8 +111,8 @@ line-height: 18px;
 text-align: center;
 
 color: #000000;
-&: focus{
-    background: #FFDF6C; //버튼색
+&: hover{
+    background: #FFE380; //버튼색
 }
 `
 
@@ -153,7 +196,46 @@ padding-right:1700px;
 padding-left: 30px;
 margin-bottom: 10px;
 `
+const NextButton = styled.button`
+width: 170px;
+height: 50px;
+background: #000000;
+border-radius: 6px;
+border: none;
 
+color: white;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 800;
+font-size: 22px;
+line-height: 17px;
+text-align: center;
+margin: 15px;
+
+&: hover{
+    background: #E88B00; //버튼색
+}
+`
+const PrevButton = styled.button`
+width: 170px;
+height: 50px;
+border-radius: 6px;
+
+color: black;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 800;
+font-size: 22px;
+line-height: 17px;
+text-align: center;
+margin: 15px;
+
+&: hover{
+    background: #E88B00; //버튼색
+    color: white;
+    border: none;
+}
+`
 const Hr = styled.hr`
 width: 100%;
 display: inline-block;
@@ -182,8 +264,7 @@ line-height: 18px;
 text-align: center;
 
 color: #000000;
-
-&: focus{
+&: hover{
     background: #FFE380; //버튼색
 }
 `
@@ -199,8 +280,6 @@ color: #000000;
 `
 function WillWriting_step1() {
     const [inputvalue, setinputvalue] = useState('')
-    const [inputvalue2, setinputvalue2] = useState('')
-
     const [inviteArrary, setinviteArrary] = useState([
         {
             name: '이여원',
@@ -221,22 +300,22 @@ function WillWriting_step1() {
     const [Q1, setQ1] = useState(" ")
     const [Q3, setQ3] = useState(" ")
     return (
-        <WCss.Background>
+        <Background>
             {console.log(a)}
-            <WCss.Container>
-            <WCss.Img src={WillWritingTitle} />
-            <WCss.Img src={stepImg} />            
+            <ImgContainer>
+            <Img src={WillWritingTitle} />
+            <Img src={stepImg} />            
             
-            <WCss.Box>
-            <WCss.Question>질문1. 어떤 장례식을 원하시나요?</WCss.Question>
-                <ChooseBox onClick={()=>(setQ1('일반 3일장 장례식'))}>가족과 지인이 함께했으면 좋겠어요.<br/>(일반 3일장 장례식)</ChooseBox>
+            <Box>
+            <Question>질문1. 어떤 장례식을 원하시나요?</Question>
+            <ChooseBox onClick={()=>(setQ1('일반 3일장 장례식'))}>가족과 지인이 함께했으면 좋겠어요.<br/>(일반 3일장 장례식)</ChooseBox>
                 <ChooseBox onClick={()=>(setQ1('가족장'))}>가족이랑만<br/>장례를 치고 싶어요.<br/>(가족장)</ChooseBox>
                 <ChooseBox onClick={()=>(setQ1('무빈소 장례식'))}>빈소를 차리지 않고 간소하게 하 싶어요.<br/>(무빈소 장례식)</ChooseBox>
                 <ChooseBox onClick={()=>(setQ1('종교장'))}>제가 믿는 종교에 따라 진행하고 싶어요.<br/>(종교장)</ChooseBox>
                 <ChooseBox onClick={()=>(setQ1('희망방식 별도'))}>저만의 희망하는 장례방식이 있어요.<br/>(기타)</ChooseBox>
 
-                <InputBox value = {inputvalue} type="text" placeholder="이 외의 희망사항을 남겨주세요." onChange={(event)=> {setinputvalue(event.target.value); {setQ1(inputvalue)}}}/>
-            <WCss.Question>질문2. 장례에 초대하고 싶으신 분이 있으신가요?</WCss.Question>
+                <InputBox value = {inputvalue} type="text" placeholder="이 외의 희망사항을 남겨주세요." onChange={(event)=> {setinputvalue(event.target.value); {setQ3(inputvalue)}}}/>
+            <Question>질문2. 장례에 초대하고 싶으신 분이 있으신가요?</Question>
             <SmallBox>
                 <Line> </Line>
                 <Container2>
@@ -251,13 +330,13 @@ function WillWriting_step1() {
                     <InputBox2 value = {phone} type="text" placeholder="예시)  010-1234-5678" onChange={(event)=>setPhone(event.target.value)}/>
                 </Container>
                 </Container2>
-                <WCss.ButtonContainer>
+                <ButtonContainer>
                 <Button onClick={ addInvite }>입력</Button>
                 {console.log(inviteArrary)}
-                </WCss.ButtonContainer>
+                </ButtonContainer>
                 <Img2 src={fileadd} /> 
             </SmallBox>
-            <WCss.Question>질문3. 원하시는 묘는 무엇인가요?</WCss.Question>
+            <Question>질문3. 원하시는 묘는 무엇인가요?</Question>
                 <ChooseBox2 onClick={()=>(setQ3('매장묘'))}> 
                     <ChooseBox2Title>매장묘</ChooseBox2Title>
                     <Img3 src = {cemetry1} /> <br />
@@ -289,24 +368,24 @@ function WillWriting_step1() {
                     저만의 원하는 방식이 따로 있어요.                
                 </ChooseBox2>
                 
-                <InputBox value = {inputvalue2} type="text" placeholder="이 외의 희망사항을 남겨주세요." onChange={(event)=> {setinputvalue2(event.target.value); setQ3(inputvalue2)}}/>
-            </WCss.Box>
+                <InputBox value = {inputvalue} type="text" placeholder="이 외의 희망사항을 남겨주세요." onChange={(event)=> {setinputvalue(event.target.value); setQ3(inputvalue)}}/>
+            </Box>
 
 
-            <WCss.ButtonContainer>
-                <WCss.PrevButton onClick={() => (window.location.href = '/WillWriting_notice')}>
-                    이전으로</WCss.PrevButton>
-                <WCss.NextButton 
+            <ButtonContainer>
+                <PrevButton onClick={() => (window.location.href = '/WillWriting_notice')}>
+                    이전으로</PrevButton>
+                <NextButton 
                 onClick={() => { window.location.href = '/WillWriting_step2';
                 dispatch(Question1(Q1));
                 dispatch(Question2(inviteArrary));
                 dispatch(Question3(Q3))}}>
-                    다음으로</WCss.NextButton>
-            </WCss.ButtonContainer>
-            </WCss.Container>
+                    다음으로</NextButton>
+            </ButtonContainer>
+            </ImgContainer>
 
 
-        </WCss.Background>
+        </Background>
 
     )
 }

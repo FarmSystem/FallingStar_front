@@ -5,8 +5,7 @@ import InviteBox from '../../components/Invite/Invite';
 import * as WCss from '../../styles/WillWritinCss';
 //리덕스
 import {useSelector, useDispatch} from "react-redux"
-import { Property } from '../../redux/store';
-import axios from 'axios';
+import { Question1, Question2, Question3 } from '../../redux/store';
 
 //이미지 
 import WillWritingTitle from '../../assets/img/WillWritingTitle.png';
@@ -49,33 +48,9 @@ line-height: 21px;
 float: left;
 color: #727272;
 `
-
 function WillWriting_step4() {
-    //배열 만들기
-    const [PropertyArray, setPropertyArray] = useState({ 
-        house: 0,
-        bond:0,
-        patent: 0,
-        car: 0
-    });
-    //인풋 값 저장변수 -> useState 사용하기..
-    const [House, sethouse] = useState(0);
-    const [Bond, setbond] = useState(0);
-    const [Patent, setpatent] = useState(0);
-    const [Car, setcar] = useState(0);
-
-    //배열 값 바꾸는 함수 -> 이게 문제 
-    const addProperty =()=>{
-        setPropertyArray({house: House, bond: Bond, patent: Patent, car: Car});
-    }
-
-    //리덕스
-    let a = useSelector((state) => { return state } )
-    let dispatch = useDispatch()
-
     return (
         <WCss.Background>
-            {console.log(a)}
             <WCss.Container>
                 <WCss.Img src={WillWritingTitle} />
                 <WCss.Img src={stepImg}/>
@@ -116,14 +91,15 @@ function WillWriting_step4() {
                     </WCss.TableBox>
                 </WCss.Box>
                 <WCss.ButtonContainer>
-                    <WCss.PrevButton onClick={() => (window.location.href = '/WillWriting_step3')}>
-                        이전으로</WCss.PrevButton>
-                    <WCss.NextButton 
-                    onClick={() => { window.location.href = '/WillWriting_step5';
-                    addProperty();dispatch(Property(PropertyArray));console.log(PropertyArray)}}>
-                        다음으로</WCss.NextButton>
-                </WCss.ButtonContainer>
+                <WCss.PrevButton onClick={() => (window.location.href = '/WillWriting_notice')}>
+                    이전으로</WCss.PrevButton>
+                <WCss.NextButton 
+                onClick={() => { window.location.href = '/WillWriting_step5';}}>
+                    다음으로</WCss.NextButton>
+            </WCss.ButtonContainer>
+                </WCss.Box>
             </WCss.Container>
+
         </WCss.Background>
         
     )
