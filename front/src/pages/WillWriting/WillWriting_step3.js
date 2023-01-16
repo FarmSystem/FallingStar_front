@@ -5,7 +5,7 @@ import InviteBox from '../../components/Invite/Invite';
 import * as WCss from '../../styles/WillWritinCss';
 //리덕스
 import {useSelector, useDispatch} from "react-redux"
-import { Question1, Question2, Question3 } from '../../redux/store';
+import { Family } from '../../redux/store';
 import axios from 'axios';
 
 //이미지 
@@ -148,11 +148,7 @@ margin-left: 13px;
 border: 0.1px solid;
 padding: 4px;
 `
-const SaveButton = styled.button`
-
-`
 function WillWriting_step3() {
-    const [Input, setInput] = useState('');
     //배열 만들기
     const [FamilyArray, setFamilyArray] = useState({ 
         child:'',
@@ -223,10 +219,11 @@ function WillWriting_step3() {
                 
                 </WCss.Box>
                 <WCss.ButtonContainer>
-                    <WCss.PrevButton onClick={() => (window.location.href = '/WillWriting_notice')}>
+                    <WCss.PrevButton onClick={() => (window.location.href = '/WillWriting_step2')}>
                         이전으로</WCss.PrevButton>
                     <WCss.NextButton 
-                    onClick={() => { addFamily();console.log(FamilyArray)}}>
+                    onClick={() => { window.location.href = '/WillWriting_step4';
+                        addFamily();dispatch(Family(FamilyArray));console.log(FamilyArray)}}>
                         다음으로</WCss.NextButton>
                     
                 </WCss.ButtonContainer>
