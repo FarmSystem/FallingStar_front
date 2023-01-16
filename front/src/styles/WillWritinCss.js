@@ -24,7 +24,7 @@ background-color: white;
 margin: 20px;
 border-radius: 10px;
 padding: 10px;
-width:90%;
+max-width:90%;
 display: inline-block;
 `
 export const Question = styled.div`
@@ -85,4 +85,3 @@ margin: 15px;
     border: none;
 }
 `
-

@@ -1,11 +1,5 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 
-//redux-persist
-import storage from 'redux-persist/lib/storage';
-import { combineReducers } from 'redux';
-import { persistReducer } from 'redux-persist';
-import thunk from 'redux-thunk';
-
 let will = createSlice({
     name: 'will',
     initialState: {
@@ -75,24 +69,8 @@ let will = createSlice({
 })
 export let { Question1, Question2, Question3, Question4, Question5, Family, Property, Text, Open} = will.actions
 
-
-
-//리듀설 모아주기
-const reducers = combineReducers({
-    will : will.reducer
-});
-
-//redux-persist
-const persistConfig = {
-    key: 'root',
-    storage,
-};
-
-const persistedReducer = persistReducer(persistConfig, reducers);
-
-const store = configureStore({
-    reducer: persistedReducer,
-    devTools: process.env.NODE_ENV !== 'production',
-    middleware: [thunk],
-});
-export default store;
+export default configureStore({
+    reducer: {
+        will : will.reducer
+    }
+})
