@@ -1,10 +1,12 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import styled from "styled-components";
 import searchLogo from "../../assets/img/SearchLogo.png";
 import searchBarImg from "../../assets/img/SearchBarImg.png";
-
 import willFindImg from "../../assets/img/WillFindImg.png";
-// import ModalBasic from "../../components/Modal/ModalBasic";
+
+import data from "../WillSearch/Data//data.json";
 
 const Modal = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -99,7 +101,7 @@ const Button = styled.button`
 
   color: #2d2d2d;
 
-  border: 1px solid #ffffff;
+  border: none;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
@@ -128,13 +130,69 @@ const TextInputContainer = styled.div`
     color: #FBFBFB;
   }
 `;
-// ---------------------------------------------------
+
+// data.json 사욯해서 useNavigate 구현
+// {data.user[0].name} 이런식으로 빼면 됨
 
 const ModalBasic = (props) => {
   const { setModalOpen, id, title, content, writer } = props;
 
   const closeModal = () => {
     setModalOpen(false);
+  };
+
+  const navigate = useNavigate();
+
+  // 입력할때 쓸 값
+  const [name, setName] = useState("");
+  const [residentNum, setResidentNum] = useState("");
+
+  // 유효성 검사
+  const [isName, setIsName] = useState(false);
+  const [isResidentNum, setIsResidentNum] = useState(false);
+
+  const onChangeName = (e) => {
+    const currentName = e.target.value;
+    setName(currentName);
+
+    if (currentName === data.user[0].name) {
+      setIsName(true);
+    } else {
+      setIsName(false);
+    }
+  };
+
+  const onChangeResidentNum = (e) => {
+    const currentResidentNum = e.target.value;
+    setResidentNum(currentResidentNum);
+
+    if (currentResidentNum === data.user[0].residentNum) {
+      setIsResidentNum(true);
+    } else {
+      setIsResidentNum(false);
+    }
+  };
+
+  const CommunityButton = ({ typo, activated, onClick }) => {
+    return (
+      <Button
+        onClick={onClick}
+        style={{
+          background: activated ? "#FFB546" : "#CECECE",
+          cursor: activated ? "pointer" : "",
+        }}
+      >
+        {typo}
+      </Button>
+    );
+  };
+
+  const goToPage = () => {
+    if (isName && isResidentNum) {
+      navigate("/WillSearch_find1");
+    } else {
+      navigate("/WillSearch_nonefind");
+    }
   };
 
   return (
@@ -145,16 +203,32 @@ const ModalBasic = (props) => {
       <TextInputContainer>
         <label>
           이름&nbsp; &nbsp;
-          <input type="text" placeholder="이름을 입력해주세요."></input>
+          <input
+            id="findName"
+            value={name}
+            type="text"
+            onChange={onChangeName}
+            placeholder="이름을 입력해주세요."
+          ></input>
         </label>
         <br />
         <label>
           주민번호&nbsp;&nbsp;
-          <input type="text" placeholder="주민번호를 입력해주세요."></input>
+          <input
+            id="findResidentNum"
+            value={residentNum}
+            type="text"
+            onChange={onChangeResidentNum}
+            placeholder="주민번호를 입력해주세요."
+          ></input>
         </label>
       </TextInputContainer>
       <ButtonContainer>
-        <Button>검색하기</Button>
+        <CommunityButton
+          typo="검색"
+          activated={name && residentNum}
+          onClick={goToPage}
+        ></CommunityButton>
       </ButtonContainer>
     </ModalContainer>
   );
@@ -236,7 +310,13 @@ function WillSearch() {
         <br />
         <br />
         <ImgContainer>
-          <WillCountText>현재 개의 유언장이 보관되었습니다.</WillCountText>
+          <WillCountText>
+            현재{" "}
+            <div style={{ color: "#e88b00", display: "inline" }}>
+              {data.user.length}
+            </div>
+            개의 유언장이 보관되었습니다.
+          </WillCountText>
           <br /> <br />
           <WillFindImg src={willFindImg} />
         </ImgContainer>

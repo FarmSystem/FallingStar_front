@@ -131,6 +131,11 @@ const MenuText = styled.div`
   font-weight: 400;
   font-size: 14px;
   text-align: center;
+
+  :active {
+    font-weight: 600;
+    color: #1e1e1e;
+  }
 `;
 
 const LogoTitle2 = styled.img`
