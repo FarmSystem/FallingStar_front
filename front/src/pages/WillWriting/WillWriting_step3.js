@@ -125,6 +125,8 @@ function WillWriting_step3() {
     //배열 값 바꾸는 함수 -> 이게 문제 
     const addFamily =()=>{
         setFamilyArray({child: Child, parents: Parents, sibile:Sibile, uncle:Uncle, spouse:Spouse});
+        console.log(FamilyArray);
+        dispatch(Family(FamilyArray));
     }
 
     //리덕스
@@ -180,8 +182,8 @@ function WillWriting_step3() {
                     <WCss.PrevButton onClick={() => (window.location.href = '/WillWriting_step2')}>
                         이전으로</WCss.PrevButton>
                     <WCss.NextButton 
-                    onClick={() => { window.location.href = '/WillWriting_step4';
-                        addFamily();dispatch(Family(FamilyArray));console.log(FamilyArray)}}>
+                    onClick={() => { 
+                        addFamily(); window.location.href = '/WillWriting_step4'}}>
                         다음으로</WCss.NextButton>
                     
                 </WCss.ButtonContainer>
