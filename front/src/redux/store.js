@@ -6,6 +6,27 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import thunk from 'redux-thunk';
 
+let login_user = createSlice({
+    name: 'login_user',
+    initialState:{
+        login: false,
+        email: 'fallingstar@gmail.com',
+        name: '김철구',
+        password: 'dudnjs725@',
+        phone:'01052394217',
+        birth: '010725'
+    },
+    reducers:{
+        LoginState(state, action){
+            state.login = action;
+        },
+        addUserInfo(state, action){
+            state.push(action); //유저 정보 한번에 다 넣기
+        }
+    }
+})
+export let {LoginState, UserInfo} = login_user.actions;
+
 let will = createSlice({
     name: 'will',
     initialState: {
@@ -75,11 +96,81 @@ let will = createSlice({
 })
 export let { Question1, Question2, Question3, Question4, Question5, Family, Property, Text, Open} = will.actions
 
+//시연을 위해 만든 유저리스트와 유언장 리스트
+let users = createSlice({
+    name: 'users',
+    initialState:[
+        {
+            email: 'fallingstar@gmail.com',
+            name: '김철구',
+            password: 'dudnjs725@',
+            phone:'01052394217',
+            birth: '010725'
+        }
+
+    ],
+    reducders:{
+        addUser(state, action){
+            state.push(action.payload)
+        }
+    }
+})
+export let {addUser} = users.actions
+
+
+let will_list = createSlice({
+    name: 'will_list',
+    initialState:[
+        {
+            birth: '010725-1234567',
+            question1: '일반 3일장 장례식',
+            question2: [
+                {
+                    name: '이여원',
+                    relationship: '녀',
+                    phone: '010-1234-1234'
+                },
+            ],
+            question3: '봉안묘',
+            question4: false,
+            question5: true,
+            family: {
+                child:'이여원, 이여원',
+                parents:'이여원, 이여원',
+                sibile:'이여원, 이여원',
+                uncle:'이여원, 이여원',
+                spouse:'이여원, 이여원'
+            },
+            property:{
+                house: 1,
+                bond:2,
+                patent: 0,
+                car: 0
+            },
+            text: '안녕',
+            open: {
+                opener:'이여원',
+                contact: '010-1234-1234',
+                relation: '아들'
+            }
+        },
+
+    ],
+    reducders:{
+        addWill(state, action){
+            state.push(action.payload)
+        }
+    }
+})
+export let {addWill} = will_list.actions
 
 
 //리듀설 모아주기
 const reducers = combineReducers({
-    will : will.reducer
+    will : will.reducer,
+    login_user: login_user.reducer,
+    users: users.reducer,
+    will_list: will_list.reducer,
 });
 
 //redux-persist
