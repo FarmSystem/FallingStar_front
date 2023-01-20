@@ -12,7 +12,7 @@ import WillWritingTitle from '../../assets/img/WillWritingTitle.png';
 import stepImg from '../../assets/img/WillWriting_opener.png';
 
 export const Background = styled.body`
-background-color: #E9EAEC;
+background: linear-gradient(170.32deg, #FFF2E3 7.81%, #E9EAEC 87.61%);
 padding-bottom: 100px;
 padding-top: 200px;
 min-height:100%
