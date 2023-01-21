@@ -61,6 +61,37 @@ const SearchLogo = styled.img`
   width: 400px;
 `;
 
+const ButtonContainer = styled.div`
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+  width: 770px;
+  height: 80px;
+`;
+
+const Button = styled.button`
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 17px;
+  line-height: 18px;
+  text-align: center;
+
+  color: #000000;
+
+  border: 1px solid #ffffff;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  padding: 7px;
+  margin: 12px;
+  width: 120px;
+  height: 45px;
+  cursor: pointer;
+`;
+
 function WillSearch() {
   return (
     <Background>
@@ -92,6 +123,13 @@ function WillSearch() {
         <br />
         <br />
         <WritingFindImg src={writingNoFindImg} />
+        <br />
+        <br />
+        <ButtonContainer>
+          <Button onClick={() => (window.location.href = "/WillSearch")}>
+            뒤로가기
+          </Button>
+        </ButtonContainer>
       </Container>
     </Background>
   );

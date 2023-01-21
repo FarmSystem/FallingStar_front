@@ -3,9 +3,10 @@ import styled from "styled-components";
 
 import questionBackground from "../../assets/img/questionBackground.png";
 import questionLogo from "../../assets/img/questionLogo.png";
+import lawyerBoard from "../../assets/img/lawyerBoard.png";
 
 const Background = styled.body`
-background-color: #F5F5F5;
+background-color: #ffffff;
 padding-bottom: 100px;
 min-height:100%
 height: auto;
@@ -33,6 +34,25 @@ const QuestionLogo = styled.img`
   top: 220px;
 `;
 
+const Container = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 80px 0 0 0;
+  background: #f;
+`;
+
+const Board = styled.div`
+  width: 80%;
+  height: 100px;
+  border: 2px solid blue;
+`;
+
+const LawyerBoard = styled.img`
+  width: 900px;
+`;
+
 function Question() {
   return (
     <Background>
@@ -40,6 +60,9 @@ function Question() {
         <QuestionLogo src={questionLogo} />
       </LogoContainer>
       <QuestionBackground src={questionBackground} />
+      <Container>
+        <LawyerBoard src={lawyerBoard} />
+      </Container>
     </Background>
   );
 }
