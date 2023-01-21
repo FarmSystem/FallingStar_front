@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled  from 'styled-components';
 
 import InviteBox from '../../components/Invite/Invite';
 import * as WCss from '../../styles/WillWritinCss';
@@ -106,6 +106,25 @@ margin-left: 13px;
 border: 0.1px solid;
 padding: 4px;
 `
+const SaveButton = styled.button`
+background: #383838;
+border-radius: 4px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 21px;
+
+width: 100px;
+display: inline-block;
+padding: 5px;
+margin-bottom: 30px;
+color: #FFFFFF;
+&: hover {
+    background-color: black;
+}
+`
+
 function WillWriting_step3() {
     //배열 만들기
     const [FamilyArray, setFamilyArray] = useState({ 
@@ -125,8 +144,8 @@ function WillWriting_step3() {
     //배열 값 바꾸는 함수 -> 이게 문제 
     const addFamily =()=>{
         setFamilyArray({child: Child, parents: Parents, sibile:Sibile, uncle:Uncle, spouse:Spouse});
-        console.log(FamilyArray);
         dispatch(Family(FamilyArray));
+        console.log(FamilyArray);
     }
 
     //리덕스
@@ -176,7 +195,8 @@ function WillWriting_step3() {
                             onChange={(event)=> {setspouse(event.target.value);}}/>
                         </WCss.TableContent>                       
                     </WCss.TableBox>
-                
+                    <SaveButton onClick={()=>{addFamily()}}>저장하기</SaveButton>
+
                 </WCss.Box>
                 <WCss.ButtonContainer>
                     <WCss.PrevButton onClick={() => (window.location.href = '/WillWriting_step2')}>

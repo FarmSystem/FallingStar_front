@@ -125,7 +125,7 @@ function WillWriting_step5() {
                     <Img2 src={TextAreaImg}/>
                     <TextArea value={WillText} type= "text" placeholder='텍스트를 입력해주세요.' 
                     onChange={(event)=> setWillText(event.target.value)}/> <br/>
-                    <SaveButton onChange={dispatch(Text(WillText))}>저장하기</SaveButton>
+                    <SaveButton onClick={()=>{dispatch(Text(WillText))}}>저장하기</SaveButton>
                     {console.log(WillText)}
                     <SubTitle>유언장 보관함</SubTitle>
                     <WillBox>

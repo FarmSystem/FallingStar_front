@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import styled from 'styled-components';
 
 import Logo from '../assets/img/Logo2.png';
@@ -6,7 +6,9 @@ import mainpicture from '../assets/img/mainpicture.png';
 import icon1 from '../assets/img/buttonicon1.png';
 import icon2 from '../assets/img/buttonicon2.png';
 import icon3 from '../assets/img/buttonicon3.png';
-
+//리덕스
+import {useSelector, useDispatch} from "react-redux";
+import { LoginState } from '../redux/store';
 
 const Main = styled.body`
 background-color: #6D6B64;
@@ -110,6 +112,11 @@ const Space = styled.br`
 padding-top: 50px;
 `
 function Mainpage() {
+    //리덕스
+    let a = useSelector((state) => { return state } )
+    let dispatch = useDispatch()
+    {console.log(a.login_user.login)}
+
     return (
         <Main>
             <br/><br/><br/><br/><br/><br/>

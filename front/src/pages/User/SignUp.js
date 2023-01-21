@@ -1,5 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
+//리덕스
+import {useSelector, useDispatch} from "react-redux";
+import { addUser, addUserInfo} from '../../redux/store';
+//axios
+//import axios from '../../api/axios';
+
+import Modal from '../../components/Modal/UserModal';
 
 const Background = styled.body`
 background-color: #DDDDDD;
@@ -33,6 +40,7 @@ const SignUpContainer = styled.div`
     font-size: 17px;
     line-height: 30px;
     color: #282828;
+    display: inline;
   }
   h3 {
     font-family: "JejuMyeongjo";
@@ -107,22 +115,32 @@ const StyledButton = styled.button`
   height: 40px;
 `;
 
-const CommunityButton = ({ typo, activated }) => {
-  return (
-    <StyledButton
-      style={{
-        background: activated ? "#585858" : "#BFBFBF",
-        cursor: activated ? "pointer" : "",
-      }}
-    >
-      {typo}
-    </StyledButton>
-  );
-};
+const Notice = styled.div`
+margin-top: 0;
+white-space: nowrap;
+display: inline-block;
+font-size:8px; 
+font-family: "JejuMyeongjo";
+font-style: normal;
+font-weight: 900;
+line-height: 7px;
+color: red;
+`
+const Num = styled.div`
+font-family: "JejuMyeongjo";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 30px;
+    color: #282828;
+    display: inline;
+`
 
-// 1.이메일, 2.비밀번호, 3.이름, 4.생일, 5.성별, 6.전화번호
-const SignUpForm = () => {
-  // 초기값 세팅 - 아이디, 닉네임, 비밀번호, 비밀번호확인, 이메일, 전화번호, 생년월일
+
+
+
+
+export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
@@ -146,7 +164,7 @@ const SignUpForm = () => {
   const [isname, setIsName] = useState(false);
   const [isBirth, setIsBirth] = useState(false);
   const [isPhone, setIsPhone] = useState(false);
-
+  
   // 이메일
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -214,123 +232,212 @@ const SignUpForm = () => {
       setIsPhone(true);
     }
   };
-
+  //주민번호
   const onChangeBirth = (e) => {
     setBirth(e.target.value);
-    const birthRegExp = /^([0123456789])([0-9]{5,})$/;
+    const birthRegExp = /^([0123456789])([0-9]{12,})$/;
 
     if (!birthRegExp.test(e.target.value)) {
-      setBirthMessage("생년월일은 6자리 숫자로 입력해주세요.");
+      setBirthMessage("주민등록번호는 13자리 숫자로 입력해주세요.");
       setIsBirth(false);
     } else {
-      setBirthMessage("생년월일이 입력되었습니다.");
+      setBirthMessage("주민등록번호가 입력되었습니다.");
       setIsBirth(true);
     }
   };
 
-  return (
-    <SignUpContainer>
-      <h3 onClick={() => (window.location.href = "/")}>Falling Star</h3>
-      <SignUpTextContainer>
-        <div>
-          <label htmlFor="email">이메일 </label>
-          <br />
-          <input
-            id="email"
-            name="name"
-            value={email}
-            onChange={onChangeEmail}
-            placeholder="이메일을 입력하세요"
-          />
-          <p className="message">{emailMessage}</p>
-        </div>
+   //리덕스
+  let a = useSelector((state) => { return state } )
+  let dispatch = useDispatch()
 
-        <div>
-          <label htmlFor="name">이름 </label> <br />
-          <input
-            id="name"
-            name="name"
-            value={name}
-            onChange={onChangeName}
-            placeholder="이름을 입력하세요"
-          />
-          <p className="message">{nameMessage}</p>
-        </div>
+  const[User, setUser] = useState({
+    email: 'fallingstar@gmail.com',
+    name: '김철구',
+    password: 'dudnjs725@',
+    phone:'01052394217',
+    birth: '0107251111111'
+  });
+  const setUserArray = ()=>{
+    setUser({email: email, name: name, password: password, phone: phone, birth: birth});
+    console.log('회원가입', User);
+    console.log(a.users);
+    dispatch(addUser(User)); //유저리스트에 저장
+    //현재 유저 정보 저장하기 
+    dispatch(addUserInfo({
+      login: true,
+      email: email,
+      name: name,
+      password: password,
+      phone:phone,
+      birth: birth
+      }));
+    console.log('현재유저', a.login_user);
+  };
 
-        <div>
-          <label htmlFor="password">비밀번호 </label> <br />
-          <input
-            id="password"
-            type="password"
-            name="password"
-            value={password}
-            onChange={onChangePassword}
-            placeholder="영문자, 숫자, 특수문자를 포함하여 8자리 이상 입력하세요"
-          />
-          <p className="message">{passwordMessage}</p>
-        </div>
+  const CommunityButton = ({ typo, activated }) => {
+    return (
+      <StyledButton 
+        style={{
+          background: activated ? "#585858" : "#BFBFBF",
+          cursor: activated ? "pointer" : "",
+        }}
+        onClick={()=>{console.log("클릭"); setUserArray(); openModal()}}
+      >
+        {typo}
+      </StyledButton>
+    );
+  };
+  
+  //모달
+  // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+    setTimeout(()=>{window.location.href = '/';}, 4000)
 
-        <div>
-          <label htmlFor="passwordConfirm">비밀번호 확인 </label> <br />
-          <input
-            type="password"
-            id="passwordConfirm"
-            name="passwordConfirm"
-            value={passwordConfirm}
-            onChange={onChangePasswordConfirm}
-            placeholder="비밀번호 확인"
-          />
-          <p className="message">{passwordConfirmMessage}</p>
-        </div>
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
-        <div>
-          <label htmlFor="phone">전화번호 </label> <br />
-          <input
-            id="phone"
-            name="phone"
-            value={phone}
-            onChange={onChangePhone}
-            placeholder="번호를 입력하세요"
-          />
-          <p className="message">{phoneMessage}</p>
-        </div>
+  // // axios POST 요청 
+  // const SendSignup = async (e) =>{
+    
 
-        <div>
-          <label htmlFor="birth">생일 </label> <br />
-          <input
-            id="birth"
-            name="birth"
-            value={birth}
-            onChange={onChangeBirth}
-            placeholder="6자리 숫자로 입력하세요"
-          />
-          <p className="message">{birthMessage}</p>
-        </div>
-      </SignUpTextContainer>
-      <ButtonContainer>
-        <CommunityButton
-          type="submit"
-          typo="회원가입"
-          activated={
-            isEmail &&
-            isPassword &&
-            isPasswordConfirm &&
-            isname &&
-            isBirth &&
-            isPhone
-          }
-        ></CommunityButton>
-      </ButtonContainer>
-    </SignUpContainer>
-  );
-};
+  //   await axios.post(`signup`,
+  //     {
+  //       "email": email,
+  //       "password": password,
+  //       "name": name,
+  //       "birth": birth,
+  //       "university": null,
+  //       "sex": null,
+  //       "phone_number": phone,
+  //       "termConsent": true
+  //     },
+  //     config
+  //   )
+  //   .then((response) => {
+  //     console.log(response);
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
+  //   {console.log("done")}
 
-export default function SignUp() {
+  // }
+
   return (
     <Background>
       <Container>
-        <SignUpForm></SignUpForm>
+        <SignUpContainer>
+          <h3 onClick={() => (window.location.href = "/")}>Falling Star</h3>
+          <SignUpTextContainer>
+            <div>
+              <label htmlFor="email">이메일 </label>
+              <br />
+              <input
+                id="email"
+                name="name"
+                value={email}
+                onChange={onChangeEmail}
+                placeholder="이메일을 입력하세요"
+              />
+              <p className="message">{emailMessage}</p>
+            </div>
+
+            <div>
+              <label htmlFor="name">이름 </label> <br />
+              <input
+                id="name"
+                name="name"
+                value={name}
+                onChange={onChangeName}
+                placeholder="이름을 입력하세요"
+              />
+              <p className="message">{nameMessage}</p>
+            </div>
+
+            <div>
+              <label htmlFor="password">비밀번호 </label> <br />
+              <input
+                id="password"
+                type="password"
+                name="password"
+                value={password}
+                onChange={onChangePassword}
+                placeholder="영문자, 숫자, 특수문자를 포함하여 8자리 이상 입력하세요"
+              />
+              <p className="message">{passwordMessage}</p>
+            </div>
+
+            <div>
+              <label htmlFor="passwordConfirm">비밀번호 확인 </label> <br />
+              <input
+                type="password"
+                id="passwordConfirm"
+                name="passwordConfirm"
+                value={passwordConfirm}
+                onChange={onChangePasswordConfirm}
+                placeholder="비밀번호 확인"
+              />
+              <p className="message">{passwordConfirmMessage}</p>
+            </div>
+
+            <div>
+              <label htmlFor="phone">전화번호 </label> <br />
+              <input
+                id="phone"
+                name="phone"
+                value={phone}
+                onChange={onChangePhone}
+                placeholder="번호를 입력하세요"
+              />
+              <p className="message">{phoneMessage}</p>
+            </div>
+
+            <div>
+              <Num>주민등록번호 </Num> 
+              <Notice> * 주민등록번호는 유언장 식별용으로만 사용됩니다.</Notice>
+              <input
+                id="birth"
+                name="birth"
+                value={birth}
+                onChange={onChangeBirth}
+                placeholder="13자리 숫자로 입력하세요"
+              />
+              <p className="message">{birthMessage}</p>
+            </div>
+          </SignUpTextContainer>
+          <ButtonContainer >
+            <CommunityButton
+              type="submit"
+              typo="회원가입"
+              activated={
+                isEmail &&
+                isPassword &&
+                isPasswordConfirm &&
+                isname &&
+                isBirth &&
+                isPhone
+              }
+              
+            ></CommunityButton>
+          </ButtonContainer>
+          <Modal open={modalOpen} close={closeModal} header="팝업 창">
+            회원가입이 완료되었습니다.
+            {dispatch(addUserInfo({
+              login: true,
+              email: email,
+              name: name,
+              password: password,
+              phone:phone,
+              birth: birth
+              }))}
+          </Modal>
+
+        </SignUpContainer>
       </Container>
     </Background>
-  );
+  )
 }

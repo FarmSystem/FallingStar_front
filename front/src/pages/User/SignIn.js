@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import {useSelector, useDispatch} from "react-redux";
+import { addUserInfo } from '../../redux/store';
+
+import Modal from '../../components/Modal/UserModal';
+
 
 const Background = styled.body`
 background-color: #DDDDDD;
@@ -107,10 +112,17 @@ const StyledButton = styled.button`
   cursor: pointer;
 `;
 
-const SignUpForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
+function SignIn() {
+
+  //리덕스
+  let a = useSelector((state) => { return state.users } )
+  let b = useSelector((state) => { return state.login_user } )
+
+  let dispatch = useDispatch()
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   // 오류메세지 상태 저장
   const [emailMessage, setEmailMessage] = useState("");
   const [passwordMessage, setPasswordMessage] = useState("");
@@ -119,19 +131,22 @@ const SignUpForm = () => {
   const [isEmail, setIsEmail] = useState(false);
   const [isPassword, setIsPassword] = useState(false);
 
-  // 이메일
+
+  // 이메일 유효성 검사
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
     const emailRegExp = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 
     if (!emailRegExp.test(email)) {
       setIsEmail(false);
+      setEmailMessage("이메일형식을 확인해주세요.");
     } else {
       setIsEmail(true);
+      setEmailMessage(" ");
     }
   };
 
-  // 비밀번호
+  // 비밀번호 유효성 검사
   const onChangePassword = (e) => {
     setPassword(e.target.value);
     const passwordRegExp =
@@ -142,49 +157,110 @@ const SignUpForm = () => {
       setIsPassword(true);
     }
   };
+  const CommunityButton = ({ typo, activated }) => {
+    return (
+      <StyledButton 
+        style={{
+          background: activated ? "#585858" : "#BFBFBF",
+          cursor: activated ? "pointer" : "",
+        }}
+        onClick={()=>{CheckLogin()}}
+      >
+        {typo}
+      </StyledButton>
+    );
+  };
+  
+  //로그인 확인
+  const [Login, setLogin] = useState(false);
+  const CheckLogin =()=>{
+    a.map((tmp, i) =>{ 
+      tmp.email === email ? tmp.password === password? 
+      <>
+      {setLogin(true)}
+      {/* //현재 유저 정보 저장하기 */}
+      {dispatch(addUserInfo({
+        login: true,
+        email: tmp.email,
+        name: tmp.name,
+        password: tmp.password,
+        phone:tmp.phone,
+        birth: tmp.birth
+        }))
+      }
+      {console.log('현재유저' ,b)}
 
-  return (
-    <SignInContainer>
-      <h3 onClick={() => (window.location.href = "/")}>Falling Star</h3>
-      <SignInTextContainer>
-        <div>
-          <label htmlFor="email">이메일 </label>
-          <br />
-          <input
-            id="email"
-            name="name"
-            value={email}
-            onChange={onChangeEmail}
-            placeholder="이메일을 입력하세요"
-          />
-          <p className="message">{emailMessage}</p>
-        </div>
+      </>
+      
+      :  <></>: <></>
+    })    
+    openModal();
+  }
+  //모달
+  // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
-        <div>
-          <label htmlFor="password">비밀번호 </label> <br />
-          <input
-            id="password"
-            type="password"
-            name="password"
-            value={password}
-            onChange={onChangePassword}
-            placeholder="비밀번호를 입력하세요"
-          />
-          <p className="message">{passwordMessage}</p>
-        </div>
-      </SignInTextContainer>
-      <ButtonContainer>
-        <StyledButton type="submit">로그인</StyledButton>
-      </ButtonContainer>
-    </SignInContainer>
-  );
-};
 
-function SignIn() {
   return (
     <Background>
       <Container>
-        <SignUpForm></SignUpForm>
+        <SignInContainer>
+          <h3 onClick={() => (window.location.href = "/")}>Falling Star</h3>
+
+          <SignInTextContainer>
+            <div>
+              <label htmlFor="email">이메일 </label>
+              <br />
+              <input
+                id="email"
+                name="name"
+                value={email}
+                onChange={onChangeEmail}
+                placeholder="이메일을 입력하세요"
+              />
+              <p className="message">{emailMessage}</p>
+            </div>
+
+            <div>
+              <label htmlFor="password">비밀번호 </label> <br />
+              <input
+                id="password"
+                type="password"
+                name="password"
+                value={password}
+                onChange={onChangePassword}
+                placeholder="비밀번호를 입력하세요"
+              />
+            </div>
+          </SignInTextContainer>
+          
+          <ButtonContainer>
+          <CommunityButton
+              type="submit"
+              typo="로그인"
+              activated={
+                isEmail}
+            ></CommunityButton>
+          </ButtonContainer>
+          {Login == true ? <>
+            <Modal open={modalOpen} close={closeModal} header="팝업 창">
+            로그인 완료
+            {setTimeout(()=>{window.location.href = '/';}, 2400)}
+            </Modal>
+          </>:<>
+            <Modal open={modalOpen} close={closeModal} header="팝업 창">
+              이메일 또는 비밀번호를 확인해주세요.
+            </Modal>
+          </>}
+          
+        </SignInContainer>
+
       </Container>
     </Background>
   );

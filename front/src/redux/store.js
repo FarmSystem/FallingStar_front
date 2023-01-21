@@ -18,14 +18,14 @@ let login_user = createSlice({
     },
     reducers:{
         LoginState(state, action){
-            state.login = action;
+            state.login = false;
         },
         addUserInfo(state, action){
-            state.push(action); //유저 정보 한번에 다 넣기
+            return action.payload //한번에 데이터 수정
         }
     }
 })
-export let {LoginState, UserInfo} = login_user.actions;
+export let {LoginState, addUserInfo} = login_user.actions;
 
 let will = createSlice({
     name: 'will',
@@ -106,10 +106,9 @@ let users = createSlice({
             password: 'dudnjs725@',
             phone:'01052394217',
             birth: '010725'
-        }
-
+        },
     ],
-    reducders:{
+    reducers:{
         addUser(state, action){
             state.push(action.payload)
         }
@@ -156,9 +155,9 @@ let will_list = createSlice({
         },
 
     ],
-    reducders:{
+    reducers:{
         addWill(state, action){
-            state.push(action.payload)
+            state.push(action.payload);
         }
     }
 })
@@ -168,21 +167,22 @@ export let {addWill} = will_list.actions
 //리듀설 모아주기
 const reducers = combineReducers({
     will : will.reducer,
-    login_user: login_user.reducer,
     users: users.reducer,
     will_list: will_list.reducer,
+    login_user: login_user.reducer,
 });
 
 //redux-persist
 const persistConfig = {
     key: 'root',
-    storage,
+    storage
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
 
 const store = configureStore({
-    reducer: persistedReducer,
+    reducer: 
+        persistedReducer, 
     devTools: process.env.NODE_ENV !== 'production',
     middleware: [thunk],
 });

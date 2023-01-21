@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import InviteBox from '../../components/Invite/Invite';
 import * as WCss from '../../styles/WillWritinCss';
@@ -51,7 +51,7 @@ width: 100px;
 background-color: white;
 height: 100px;
 border-radius: 200px;
-padding: 0;
+padding: 0px;
 border: 2px solid red;
 filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 margin: 20px;
@@ -67,9 +67,19 @@ margin-bottom: 5px;
 const Play = styled.button`
 padding: 10;
 width: 100px;
-height: 30px;
+height: 40px;
 border-radius: 10px;
+border:none;
 background-color: orange;
+font-size: 16px;
+font-weight: 700;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+:disabled{
+    background-color: gray;
+}
+// .blick{
+//     animation: Shine 1s step-end infinite;
+// }
 `
 const WillBox = styled.div`
 width: 60%;
@@ -85,22 +95,33 @@ background-image: url('../../assets/img/TextAreaImg.png');
 font-family: 'JejuMyeongjo';
 text-align: left;
 line-height:24px;
-`
-const RecordText = styled.div`
+font-weight: 100;
 
 `
-const SubRecordText = styled.div`
 
-`
 const Br = styled.div`
 margin: 10px;
-// `
+`
 
+const P = styled.div`
+font-family: 'JejuMyeongjo';
+text-align: left;
+line-height:24px;
+color: #C57110;
+white-space: nowrap;
+display: inline;
+`
+// const Shine = styled.keyframes`
+// 50% {
+//     opacity: 0;
+// }
+// `
 function WillWriting_recording() {
     //리덕스
     let a = useSelector((state) => { return state } )
     let dispatch = useDispatch()
     const click = false;
+    const username = a.login_user.name;
 
     //현재 날짜 구하기
     let now = new Date();
@@ -186,7 +207,6 @@ function WillWriting_recording() {
         // 메서드가 호출 된 노드 연결 해제
         analyser.disconnect();
         source.disconnect();
-        
         if (audioUrl) {
           URL.createObjectURL(audioUrl); // 출력된 링크에서 녹음된 오디오 확인 가능
         }
@@ -204,10 +224,24 @@ function WillWriting_recording() {
     
     const play = () => { 
         const audio = new Audio(URL.createObjectURL(audioUrl)); // 😀😀😀
+        //파일로 저장
+        const sound = new File([audioUrl], "soundBlob", 
+        {lastModified: new Date().getTime()}, [audioUrl]);
+        console.log(sound); 
+
+        //formdata
+        let fd = new FormData();
+        fd.append("fname", sound) //파일 첨부
+
+        //body:fd 로 서버에 전송하면 되는 듯
         audio.loop = false;
         audio.volume = 1;
         audio.play();
     };
+
+    const audioSave = () => {
+
+    };  
     return (
         <WCss.Background>
             {console.log(a)}
@@ -226,33 +260,33 @@ function WillWriting_recording() {
                     <WillBox>
                         {(a.login_user.birth).substr(0, 2)} 년 {(a.login_user.birth).substr(2, 2)} 월 {(a.login_user.birth).substr(4, 2)} 일생 <br />
                         유언자 {a.login_user.name}
-                        <br />나는 다음과 같이 유언한다. <br/>
-                        <br/>1. 나는 {a.will.question1} 장례방식을 희망하고 <> </>
+                        <br />나는 다음과 같이 유언한다. <br/> 
+                        <br/>1. 나는 <P>{a.will.question1}</P> 장례방식을 희망하고 <> </>
                         {a.will.question2.map((tmp)=>{
                             return (
-                                <>
+                                <P>
                                 {tmp.relationship} <> </>
                                 {tmp.name},<> </>
-                                </> 
+                                </P> 
                             )
                         })} 
                         을 장례에 초대하길 희망한다.<br/>
-                        장례가 끝나고 나는 {a.will.quesion3} 에 안치되길 바라며 
-                        혹 나에게 연명치료가 권해진다면 {a.will.question4 == true ? <> 연명치료를 원하고 </> : <> 연명치료를 원하지 않고. </>}
-                        나는 {a.will.question5 == true ? <> 장기기증을 신청하였다. </> : <> 장기기증을 신청하지 않았다. </>}
+                        장례가 끝나고 나는 <P>{a.will.quesion3}</P> 에 안치되길 바라며 
+                        혹 나에게 연명치료가 권해진다면 <P>{a.will.question4 == true ? <> 연명치료를 원하고 </> : <> 연명치료를 원하지 않고. </>}</P>
+                        나는 <P>{a.will.question5 == true ? <> 장기기증을 신청하였다. </> : <> 장기기증을 신청하지 않았다. </>}</P>
 
                         <Br/>2.  
                         재산의 사인증여 또는 유증에 관하여 재산
-                        등산 {a.will.property.house}채, 
-                        채권 기타의 청구권 {a.will.property.bond}개, 
-                        권리 {a.will.property.patent}개, 
-                        자동차 {a.will.property.car}대에
+                        등산 <P>{a.will.property.house}채</P>, 
+                        채권 기타의 청구권 <P>{a.will.property.bond}개</P>, 
+                        권리 <P>{a.will.property.patent}개</P>, 
+                        자동차 <P>{a.will.property.car}대</P>에
                         대하여 
-                        직계비속 {a.will.family.child}, 
-                        직계존속 {a.will.family.parents},
-                        형제, 자매{a.will.family.sibile},
-                        방계혈족{a.will.family.spouse},
-                        배우자 {a.will.family.uncle} 
+                        직계비속 <P>{a.will.family.child}</P>, 
+                        직계존속 <P>{a.will.family.parents}</P>,
+                        형제, 자매<P>{a.will.family.sibile}</P>,
+                        방계혈족<P>{a.will.family.spouse}</P>,
+                        배우자 <P>{a.will.family.uncle} </P>
                         에게 민법적 상속 자격이 있음을 밝힌다.
                         
                         <Br/>3.
@@ -276,8 +310,9 @@ function WillWriting_recording() {
                         <RecordButton onClick={onRec ? onRecAudio : offRecAudio}> 
                             <RecordImg src ={Record}/> <br/>녹음
                         </RecordButton>
-                        <br/><br/><br/>
+                        <br/><br/>
                         <Play onClick={play} disabled={disabled}> 녹음 확인</Play>
+                        <br/><br/><br/>
 
                     </>:<>
                         {/* 녹음진행 중 */}
@@ -286,9 +321,10 @@ function WillWriting_recording() {
                         <RecordOnButton onClick={onRec ? onRecAudio : offRecAudio}> 
                             <RecordImg src ={Record}/><br/>중지
                         </RecordOnButton>
+                        <br/><br/>
+                        <Play onClick={play} disabled={disabled}> 녹음 확인</Play>
+                        <br/><br/><br/>
                     </>}
-
-
                 </WCss.Box>
                 <WCss.ButtonContainer>
                     <WCss.PrevButton onClick={() => (window.location.href = '/WillWriting_step5')}>
