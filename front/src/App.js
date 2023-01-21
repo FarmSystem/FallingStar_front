@@ -31,6 +31,9 @@ import WillWriting_complete2 from "./pages/WillWriting/WillWriting_complete2";
 //변호사 찾기
 import Lawyer from "./pages/Lawyer/Lawyer";
 import Lawyer_profile from "./pages/Lawyer/Lawyer_profile";
+import Lawyer_profile2 from "./pages/Lawyer/Lawyer_profile2";
+import Lawyer_profile3 from "./pages/Lawyer/Lawyer_profile3";
+import Lawyer_profile4 from "./pages/Lawyer/Lawyer_profile4";
 //게시판
 import Question from "./pages/Question/Question";
 import Question_detail from "./pages/Question/Question_detail";
@@ -86,6 +89,9 @@ function App() {
           />
           <Route path="Lawyer" element={<Lawyer />} />
           <Route path="Lawyer_profile" element={<Lawyer_profile />} />
+          <Route path="Lawyer_profile2" element={<Lawyer_profile2 />} />
+          <Route path="Lawyer_profile3" element={<Lawyer_profile3 />} />
+          <Route path="Lawyer_profile4" element={<Lawyer_profile4 />} />
           <Route path="Question" element={<Question />} />
           <Route path="Question_detail" element={<Question_detail />} />
           <Route path="Mypage" element={<Mypage />} />
