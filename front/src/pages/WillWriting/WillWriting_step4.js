@@ -49,6 +49,24 @@ line-height: 21px;
 float: left;
 color: #727272;
 `
+const SaveButton = styled.button`
+background: #383838;
+border-radius: 4px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 21px;
+
+width: 100px;
+display: inline-block;
+padding: 5px;
+margin-bottom: 30px;
+color: #FFFFFF;
+&: hover {
+    background-color: black;
+}
+`
 
 function WillWriting_step4() {
     //배열 만들기
@@ -114,6 +132,8 @@ function WillWriting_step4() {
                             onChange={(event)=> {setcar(event.target.value);}}/>
                         </WCss.TableContent>                         
                     </WCss.TableBox>
+                    <SaveButton onClick={()=>{addProperty()}}>저장하기</SaveButton>
+
                 </WCss.Box>
                 <WCss.ButtonContainer>
                     <WCss.PrevButton onClick={() => (window.location.href = '/WillWriting_step3')}>

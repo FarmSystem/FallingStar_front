@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import HomeIcon from "@mui/icons-material/Home";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
@@ -7,6 +7,11 @@ import ContactMailIcon from "@mui/icons-material/ContactMail";
 import TextsmsIcon from "@mui/icons-material/Textsms";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import logoTitle2 from "../../assets/img/LogoTitle.png";
+//리덕스
+import {useSelector, useDispatch} from "react-redux";
+import { addUser, addUserInfo, LoginState} from '../../redux/store';
+//모달
+import Modal from '../Modal/UserModal';
 
 // ㅇㅇ
 const Wrapper = styled.div`
@@ -147,7 +152,33 @@ const LogoTitle2 = styled.img`
   cursor: pointer;
 `;
 
+const LoginedText = styled.div`
+padding: 2px 0 0 0;
+  height: 20px;
+  font-family: "JejuMyeongjo";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+`
+
 const Navbar = () => {
+  //리덕스
+  let a = useSelector((state) => { return state } )
+  let dispatch = useDispatch()
+
+  //모달
+  // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+    dispatch(LoginState(false));
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <Wrapper>
       <LogoContainer>
@@ -156,7 +187,7 @@ const Navbar = () => {
             <LogoDetailText>블록체인 유언장</LogoDetailText>
             <LogoDetailText>법률 커뮤니티</LogoDetailText>
           </LogoDetail>
-          <LogoTitle onClick={() => (window.location.href = "./")}>
+          <LogoTitle onClick={() => {window.location.href = "./"; }}>
             별세
           </LogoTitle>
           <LogoTitle2
@@ -164,17 +195,35 @@ const Navbar = () => {
             src={logoTitle2}
           />
         </Logo>
+        {a.login_user.login == true ? <>
+          {/* 로그인 했을때 */}
+          <LogoMenu>
+            <AccountCircleIcon />
+            <LogoMenuText onClick={() => (window.location.href = "./Mypage")}>
+              내 정보
+            </LogoMenuText>
+            <LogoMenuText>/</LogoMenuText>
+            <LogoMenuText onClick={() => (openModal())}>
+              로그아웃
+            </LogoMenuText>
+          </LogoMenu>
+          
 
-        <LogoMenu>
-          <AccountCircleIcon />
-          <LogoMenuText onClick={() => (window.location.href = "./SignIn")}>
-            로그인
-          </LogoMenuText>
-          <LogoMenuText>/</LogoMenuText>
-          <LogoMenuText onClick={() => (window.location.href = "./SignUp")}>
-            회원가입
-          </LogoMenuText>
-        </LogoMenu>
+            
+        </>:<>
+          {/* 로그인 안했을때 */}
+          <LogoMenu>
+            <AccountCircleIcon />
+            <LogoMenuText onClick={() => (window.location.href = "./SignIn")}>
+              로그인
+            </LogoMenuText>
+            <LogoMenuText>/</LogoMenuText>
+            <LogoMenuText onClick={() => (window.location.href = "./SignUp")}>
+              회원가입
+            </LogoMenuText>
+          </LogoMenu>
+        </>}
+      
       </LogoContainer>
 
       <NavContainer>
@@ -204,6 +253,9 @@ const Navbar = () => {
           </ul>
         </Nav>
       </NavContainer>
+      <Modal open={modalOpen} close={closeModal} header="팝업 창">
+            로그아웃 하시겠습니까?
+      </Modal>
     </Wrapper>
 
     /*

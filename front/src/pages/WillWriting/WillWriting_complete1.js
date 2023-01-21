@@ -30,10 +30,20 @@ text-align: center;
 
 color: #000000;
 display: inline-block;
+`
+const Text2 = styled.div`
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 35px;
+line-height: 42px;
+text-align: center;
+
+color: #CD832C;
+display: inline-block;
 
 `
 const Typing = styled.div`
-display: inline;
 font-family: 'Inter';
 font-style: normal;
 font-weight: 700;
@@ -82,10 +92,10 @@ function WillWriting_complete1() {
         <Background>
             <WCss.Container>
                 <WCss.Img src={WillWritingTitle} />
+                <span> </span>
                 {show==true? <>
                     <Typing>
-                        <Text>유언장 작성이 완료되었습니다.</Text>                 
-                        <Typed strings={["..."]} typeSpeed={200} backSpeed={200} loop />
+                        <Text2>유언장 작성이 완료되었습니다.</Text2>                 
                     </Typing>
                     <br  />
                     <Img2 src={check}/>
