@@ -104,7 +104,7 @@ function WillWriting_complete1() {
                     </Typing>
                     <br  />
                     <Img2 src={check}/>
-                    <SubText>작성하신 <PointSubText>마이페이지</PointSubText>
+                    <SubText>작성하신 유언장은 <PointSubText>내 정보</PointSubText>
                         에서 <br/>학인 및 수정하실 수 있습니다.
                     </SubText>
                 </>:<>

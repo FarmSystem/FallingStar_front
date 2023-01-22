@@ -98,8 +98,10 @@ const Button = styled.button`
 function WillSearch() {
    //리덕스
   let a = useSelector((state) => { return state.will_list } )
+  let b = useSelector((state) => { return state } )
+
   const find = useLocation();
-  {console.log(find)}
+  {console.log(find, b)}
   return (
     <Background>
       <br />

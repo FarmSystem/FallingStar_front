@@ -174,6 +174,7 @@ function WillWriting_opener() {
     let a = useSelector((state) => { return state } );
     const will = useSelector((state) => { return state.will } );
     let dispatch = useDispatch();
+    {console.log(a)}
 
     const setWill = ()=>{
         dispatch(setUserName(a.login_user.name));
@@ -235,7 +236,7 @@ function WillWriting_opener() {
                     <WCss.PrevButton onClick={() => (window.location.href = '/WillWriting_recording')}>
                         이전으로</WCss.PrevButton>
                     <WCss.NextButton 
-                    onClick={() => { window.location.href = '/WillWriting_complete1';
+                    onClick={() => { window.location.href = '/WillWriting_complete1';setWill();
                     }}>
                         다음으로</WCss.NextButton>
                 </WCss.ButtonContainer>
