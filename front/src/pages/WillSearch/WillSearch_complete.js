@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
 
 import searchLogo from "../../assets/img/SearchLogo.png";
 import completeImg from "../../assets/img/CompleteImg.png";
@@ -92,7 +93,12 @@ const NoticeText = styled.div`
   color: #8d8d8d;
 `;
 
-function WillSearch() {
+function WillSearch_complete() {
+  //const find = useLocation();
+  //{console.log(find)}
+  const data = useLocation();
+  {console.log(data)}
+
   return (
     <Background>
       <br />
@@ -113,10 +119,10 @@ function WillSearch() {
           <FindText>찾으시는 분</FindText>
           <br /> <br />
           <FindText>
-            이름:
+            이름: {data.state.name}
             <br />
             <br />
-            주민등록번호:
+            주민등록번호: {data.state.residentNum}
           </FindText>
         </FindTextContainer>
         <br />
@@ -139,4 +145,4 @@ function WillSearch() {
   );
 }
 
-export default WillSearch;
+export default WillSearch_complete;

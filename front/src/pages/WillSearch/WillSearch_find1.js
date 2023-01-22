@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
 import styled from "styled-components";
 
 import searchLogo from "../../assets/img/SearchLogo.png";
@@ -95,7 +97,13 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-function WillSearch() {
+function WillSearch_find1() {
+  const find = useLocation();
+  const name = find.state.name;
+  const residentNum = find.state.residentNum;
+  console.log(name, residentNum);
+  const navigate = useNavigate();
+
   return (
     <Background>
       <br />
@@ -116,10 +124,10 @@ function WillSearch() {
           <FindText>찾으시는 분</FindText>
           <br /> <br />
           <FindText>
-            이름:
+            이름: {name}
             <br />
             <br />
-            주민등록번호:
+            주민등록번호: {residentNum}
           </FindText>
         </FindTextContainer>
         <br />
@@ -129,7 +137,12 @@ function WillSearch() {
         <DateText>작성 날짜</DateText>
         <br /> <br /> <br />
         <ButtonContainer>
-          <Button onClick={() => (window.location.href = "/WillSearch_find2")}>
+          <Button onClick={() => (navigate("/WillSearch_find2",{
+          state: {
+            name: name,
+            residentNum: residentNum
+          }
+        }))}>
             찾기
           </Button>
         </ButtonContainer>
@@ -138,4 +151,4 @@ function WillSearch() {
   );
 }
 
-export default WillSearch;
+export default WillSearch_find1;

@@ -293,6 +293,8 @@ const WillCountText = styled.div`
 `;
 
 function WillSearch() {
+  let a = useSelector((state) => { return state.will_list } )
+
   return (
     <Background>
       <br />
@@ -318,7 +320,7 @@ function WillSearch() {
           <WillCountText>
             현재{" "}
             <div style={{ color: "#e88b00", display: "inline" }}>
-              {data.user.length}
+              {a.length}
             </div>
             개의 유언장이 보관되었습니다.
           </WillCountText>
