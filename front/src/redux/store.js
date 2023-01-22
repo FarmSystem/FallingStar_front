@@ -92,14 +92,16 @@ let will = createSlice({
         Open(state, action){
             state.open = action.payload;
         },
-        setUser(state, action){
-            state.name = action.payload.name;
-            state.birth = action.payload.birth;
+        setUserName(state, action){
+            state.name = action.payload;
+        },
+        setUserBirth(state, action){
+            state.birth = action.payload;
         }
     }
 
 })
-export let { setUser, Question1, Question2, Question3, Question4, Question5, Family, Property, Text, Open} = will.actions
+export let { setUserName, setUserBirth, Question1, Question2, Question3, Question4, Question5, Family, Property, Text, Open} = will.actions
 
 //시연을 위해 만든 유저리스트와 유언장 리스트
 let users = createSlice({

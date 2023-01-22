@@ -209,6 +209,7 @@ function SignIn() {
 
   return (
     <Background>
+      {console.log(a)}
       <Container>
         <SignInContainer>
           <h3 onClick={() => (window.location.href = "/")}>Falling Star</h3>
