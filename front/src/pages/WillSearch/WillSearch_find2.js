@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import find2Img from "../../assets/img/Find2Img.png";
 import searchLogo from "../../assets/img/SearchLogo.png";
@@ -58,6 +59,12 @@ const Button = styled.button`
 const Find2Img = styled.img``;
 
 function WillSearch() {
+  const find = useLocation();
+  {console.log(find)}
+  const name = find.state.name;
+  const residentNum = find.state.residentNum;
+  const navigate = useNavigate();
+
   return (
     <Background>
       <br />
@@ -79,7 +86,12 @@ function WillSearch() {
         <br /> <br /> <br />
         <ButtonContainer>
           <Button
-            onClick={() => (window.location.href = "/WillSearch_complete")}
+            onClick={() => (navigate("/WillSearch_complete",{
+              state: {
+                name: name,
+                residentNum: residentNum
+              }
+            }))}
           >
             별세 전담 변호사에게 <br />
             유언장 서류 요청하기

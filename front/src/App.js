@@ -41,6 +41,10 @@ import Question_detail from "./pages/Question/Question_detail";
 import Mypage from "./pages/User/MyPage";
 import SignIn from "./pages/User/SignIn";
 import SignUp from "./pages/User/SignUp";
+import OpenerAgree from "./pages/User/MyPage/OpenerAgree";
+import Opener from "./pages/User/MyPage/Opener";
+import WillBox from "./pages/User/MyPage/WillBox";
+import WillEdit from "./pages/User/MyPage/WillEdit";
 
 const Layout = () => {
   return (
@@ -97,6 +101,11 @@ function App() {
           <Route path="Mypage" element={<Mypage />} />
           <Route path="SignUp" element={<SignUp />} />
           <Route path="SignIn" element={<SignIn />} />
+
+          <Route path="OpenerAgree" element={<OpenerAgree />} />
+          <Route path="Opener" element={<Opener />} />
+          <Route path="WillBox" element={<WillBox />} />
+          <Route path="WIllEdit" element={<WillEdit />}/>
         </Route>
       </Routes>
     </>

@@ -141,13 +141,16 @@ function MyPage() {
                 <SmallText>작성하신 유언장을 블록체인 기술로 안전하게 보관 중입니다.</SmallText>
                 
                 <Category>유언장</Category>
-                <Menu>나이 블록체인 유언장 수정하기</Menu>
-                <Menu>유언장 메시지 보관함</Menu>
-                <Menu>나의 열람인</Menu>
+                <Menu onClick={() => (window.location.href = "/WillEdit")}>나의 블록체인 유언장 수정하기</Menu>
+                <Menu onClick={() => (window.location.href = "/WillBox")}>유언장 메시지 보관함</Menu>
+                <Menu onClick={() => (window.location.href = "/Opener")}>나의 유언장 열람인</Menu>
                 
                 <Category>법률 커뮤니티</Category>
                 <Menu>나의 관심 변호사</Menu>
                 <Menu>내가 작성한 게시글</Menu>
+
+                <Category>열람인</Category>
+                <Menu onClick={() => (window.location.href = "/OpenerAgree")}>관계인 승인여부</Menu>
             </WCss.Container>
         </Background>
     )
