@@ -203,7 +203,7 @@ const Navbar = () => {
               내 정보
             </LogoMenuText>
             <LogoMenuText>/</LogoMenuText>
-            <LogoMenuText onClick={() => (openModal())}>
+            <LogoMenuText onClick={() => {openModal(); console.log(modalOpen)}}>
               로그아웃
             </LogoMenuText>
           </LogoMenu>

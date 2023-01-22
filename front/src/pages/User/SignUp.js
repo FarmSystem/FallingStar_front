@@ -1,12 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 //리덕스
 import {useSelector, useDispatch} from "react-redux";
 import { addUser, addUserInfo} from '../../redux/store';
-//axios
-//import axios from '../../api/axios';
-
 import Modal from '../../components/Modal/UserModal';
+
 
 const Background = styled.body`
 background-color: #DDDDDD;
@@ -40,7 +38,6 @@ const SignUpContainer = styled.div`
     font-size: 17px;
     line-height: 30px;
     color: #282828;
-    display: inline;
   }
   h3 {
     font-family: "JejuMyeongjo";
@@ -114,7 +111,6 @@ const StyledButton = styled.button`
   width: 100px;
   height: 40px;
 `;
-
 const Notice = styled.div`
 margin-top: 0;
 white-space: nowrap;
@@ -128,16 +124,13 @@ color: red;
 `
 const Num = styled.div`
 font-family: "JejuMyeongjo";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 17px;
-    line-height: 30px;
-    color: #282828;
-    display: inline;
+font-style: normal;
+font-weight: 700;
+font-size: 17px;
+line-height: 30px;
+color: #282828;
+display: inline;
 `
-
-
-
 
 
 export default function SignUp() {
@@ -164,7 +157,7 @@ export default function SignUp() {
   const [isname, setIsName] = useState(false);
   const [isBirth, setIsBirth] = useState(false);
   const [isPhone, setIsPhone] = useState(false);
-  
+
   // 이메일
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -232,6 +225,7 @@ export default function SignUp() {
       setIsPhone(true);
     }
   };
+
   //주민번호
   const onChangeBirth = (e) => {
     setBirth(e.target.value);
@@ -245,24 +239,16 @@ export default function SignUp() {
       setIsBirth(true);
     }
   };
-
-   //리덕스
+  //리덕스
   let a = useSelector((state) => { return state } )
   let dispatch = useDispatch()
 
-  const[User, setUser] = useState({
-    email: 'fallingstar@gmail.com',
-    name: '김철구',
-    password: 'dudnjs725@',
-    phone:'01052394217',
-    birth: '0107251111111'
-  });
   const setUserArray = ()=>{
-    setUser({email: email, name: name, password: password, phone: phone, birth: birth});
-    console.log('회원가입', User);
-    console.log(a.users);
-    dispatch(addUser(User)); //유저리스트에 저장
-    //현재 유저 정보 저장하기 
+    //유저리스트에 저장
+    dispatch(addUser({
+      email: email, name: name, password: password, phone: phone, birth: birth
+    })); 
+    //현재 로그인 정보 저장하기 
     dispatch(addUserInfo({
       login: true,
       email: email,
@@ -273,21 +259,19 @@ export default function SignUp() {
       }));
     console.log('현재유저', a.login_user);
   };
-
   const CommunityButton = ({ typo, activated }) => {
     return (
-      <StyledButton 
+      <StyledButton
         style={{
           background: activated ? "#585858" : "#BFBFBF",
           cursor: activated ? "pointer" : "",
         }}
-        onClick={()=>{console.log("클릭"); setUserArray(); openModal()}}
+        onClick={()=>{setUserArray(); openModal();}}
       >
         {typo}
       </StyledButton>
     );
   };
-  
   //모달
   // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
   const [modalOpen, setModalOpen] = useState(false);
@@ -299,38 +283,10 @@ export default function SignUp() {
   const closeModal = () => {
     setModalOpen(false);
   };
-
-  // // axios POST 요청 
-  // const SendSignup = async (e) =>{
-    
-
-  //   await axios.post(`signup`,
-  //     {
-  //       "email": email,
-  //       "password": password,
-  //       "name": name,
-  //       "birth": birth,
-  //       "university": null,
-  //       "sex": null,
-  //       "phone_number": phone,
-  //       "termConsent": true
-  //     },
-  //     config
-  //   )
-  //   .then((response) => {
-  //     console.log(response);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-  //   {console.log("done")}
-
-  // }
-
   return (
     <Background>
       <Container>
-        <SignUpContainer>
+          <SignUpContainer>
           <h3 onClick={() => (window.location.href = "/")}>Falling Star</h3>
           <SignUpTextContainer>
             <div>
@@ -397,9 +353,8 @@ export default function SignUp() {
             </div>
 
             <div>
-              <Num>주민등록번호 </Num> 
-              <Notice> * 주민등록번호는 유언장 식별용으로만 사용됩니다.</Notice>
-              <input
+            <Num>주민등록번호 </Num> 
+              <Notice> * 주민등록번호는 유언장 식별용으로만 사용됩니다.</Notice>              <input
                 id="birth"
                 name="birth"
                 value={birth}
@@ -409,7 +364,7 @@ export default function SignUp() {
               <p className="message">{birthMessage}</p>
             </div>
           </SignUpTextContainer>
-          <ButtonContainer >
+          <ButtonContainer>
             <CommunityButton
               type="submit"
               typo="회원가입"
@@ -421,23 +376,13 @@ export default function SignUp() {
                 isBirth &&
                 isPhone
               }
-              
             ></CommunityButton>
           </ButtonContainer>
-          <Modal open={modalOpen} close={closeModal} header="팝업 창">
-            회원가입이 완료되었습니다.
-            {dispatch(addUserInfo({
-              login: true,
-              email: email,
-              name: name,
-              password: password,
-              phone:phone,
-              birth: birth
-              }))}
-          </Modal>
-
         </SignUpContainer>
+        <Modal open={modalOpen} close={closeModal} header="팝업 창">
+            회원가입이 완료되었습니다.
+        </Modal>
       </Container>
     </Background>
-  )
+  );
 }

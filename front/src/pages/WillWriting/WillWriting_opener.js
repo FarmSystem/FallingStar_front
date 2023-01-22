@@ -5,7 +5,7 @@ import InviteBox from '../../components/Invite/Invite';
 import * as WCss from '../../styles/WillWritinCss';
 //리덕스
 import {useSelector, useDispatch} from "react-redux"
-import { Open, addWill, setUser } from '../../redux/store';
+import { Open, addWill, setUserName, setUserBirth } from '../../redux/store';
 
 //이미지 
 import WillWritingTitle from '../../assets/img/WillWritingTitle.png';
@@ -176,7 +176,8 @@ function WillWriting_opener() {
     let dispatch = useDispatch();
 
     const setWill = ()=>{
-        dispatch(setUser(a.login_user));
+        dispatch(setUserName(a.login_user.name));
+        dispatch(setUserBirth(a.login_user.birth));
         console.log('유언장 확인', will);
         dispatch(addWill(will));
         //console.log('추가', a.will_list);
