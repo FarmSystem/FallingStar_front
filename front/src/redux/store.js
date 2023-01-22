@@ -133,9 +133,9 @@ let will_list = createSlice({
             question1: '일반 3일장 장례식',
             question2: [
                 {
-                    name: '이여원',
-                    relationship: '녀',
-                    phone: '010-1234-1234'
+                    name: ' ',
+                    relationship: ' ',
+                    phone: ' '
                 },
             ],
             question3: '봉안묘',

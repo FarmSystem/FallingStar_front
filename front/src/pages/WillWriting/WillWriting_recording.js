@@ -256,22 +256,26 @@ function WillWriting_recording() {
                     <br /><br />
                     <Text>작성된 유언장 내용을 확인해주세요.</Text>
                     <SmallText>작성해주신 유언장 작성 1,2,3,4단계의 내용을 기반을 작성된 유언장입니다. <br/> 
-                    유언장 작성하기 5단계의 유언장 내용은 마이페이지에서 확인하실 수 있습니다.</SmallText>
+                    유언장 작성하기 5단계의 유언장 내용은 내 정보 페이지에서 확인하실 수 있습니다.</SmallText>
                     <WillBox>
                         {(a.login_user.birth).substr(0, 2)} 년 {(a.login_user.birth).substr(2, 2)} 월 {(a.login_user.birth).substr(4, 2)} 일생 <br />
                         유언자 {a.login_user.name}
                         <br />나는 다음과 같이 유언한다. <br/> 
                         <br/>1. 나는 <P>{a.will.question1}</P> 장례방식을 희망하고 <> </>
-                        {a.will.question2.map((tmp)=>{
-                            return (
-                                <P>
-                                {tmp.relationship} <> </>
-                                {tmp.name},<> </>
-                                </P> 
-                            )
+                        {a.will.question2.map((tmp, i)=>{
+                            if(i ==0){
+                                <></>
+                            }else{
+                                return (
+                                    <P>
+                                    {tmp.relationship} <> </>
+                                    {tmp.name},<> </>
+                                    </P> 
+                                )
+                            }
                         })} 
                         을 장례에 초대하길 희망한다.<br/>
-                        장례가 끝나고 나는 <P>{a.will.quesion3}</P> 에 안치되길 바라며 
+                        장례가 끝나고 나는 <P>{a.will.question3}</P> 에 안치되길 바라며 
                         혹 나에게 연명치료가 권해진다면 <P>{a.will.question4 == true ? <> 연명치료를 원하고 </> : <> 연명치료를 원하지 않고. </>}</P>
                         나는 <P>{a.will.question5 == true ? <> 장기기증을 신청하였다. </> : <> 장기기증을 신청하지 않았다. </>}</P>
 
