@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+//리덕스
 import {useSelector, useDispatch} from "react-redux";
 import { addUserInfo } from '../../redux/store';
-
+//모달
 import Modal from '../../components/Modal/UserModal';
 
 
@@ -118,7 +119,6 @@ function SignIn() {
   //리덕스
   let a = useSelector((state) => { return state.users } )
   let b = useSelector((state) => { return state.login_user } )
-
   let dispatch = useDispatch()
 
   const [email, setEmail] = useState('');

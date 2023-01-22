@@ -7,6 +7,8 @@ import searchBarImg from "../../assets/img/SearchBarImg.png";
 import willFindImg from "../../assets/img/WillFindImg.png";
 
 import data from "../WillSearch/Data//data.json";
+//리덕스
+import {useSelector} from "react-redux";
 
 const Modal = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -135,8 +137,12 @@ const TextInputContainer = styled.div`
 // {data.user[0].name} 이런식으로 빼면 됨
 
 const ModalBasic = (props) => {
-  const { setModalOpen, id, title, content, writer } = props;
 
+   //리덕스
+  let a = useSelector((state) => { return state.will_list } )
+
+  //모달
+  const { setModalOpen} = props;
   const closeModal = () => {
     setModalOpen(false);
   };
@@ -146,32 +152,38 @@ const ModalBasic = (props) => {
   // 입력할때 쓸 값
   const [name, setName] = useState("");
   const [residentNum, setResidentNum] = useState("");
-
-  // 유효성 검사
+  // 검사
   const [isName, setIsName] = useState(false);
   const [isResidentNum, setIsResidentNum] = useState(false);
-
-  const onChangeName = (e) => {
-    const currentName = e.target.value;
-    setName(currentName);
-
-    if (currentName === data.user[0].name) {
-      setIsName(true);
-    } else {
-      setIsName(false);
-    }
-  };
-
-  const onChangeResidentNum = (e) => {
-    const currentResidentNum = e.target.value;
-    setResidentNum(currentResidentNum);
-
-    if (currentResidentNum === data.user[0].residentNum) {
-      setIsResidentNum(true);
-    } else {
-      setIsResidentNum(false);
-    }
-  };
+  //map 함수로 찾기
+  const Find = ()=>{
+    a.map((tmp, i) =>{ 
+      tmp.birth === residentNum ? 
+        tmp.name == name ?
+        <>
+        {navigate("/WillSearch_find1",{
+          state: {
+            name: name,
+            residentNum: residentNum
+          }
+        })}
+        </>:<>
+        {navigate("/WillSearch_nonefind",{
+          state: {
+            name: name,
+            residentNum: residentNum
+          }
+        })}
+        </>:<>
+        {navigate("/WillSearch_nonefind",{
+          state: {
+            name: name,
+            residentNum: residentNum
+          }
+        })}
+        </>
+    })    
+  }
 
   const CommunityButton = ({ typo, activated, onClick }) => {
     return (
@@ -187,19 +199,12 @@ const ModalBasic = (props) => {
     );
   };
 
-  const goToPage = () => {
-    if (isName && isResidentNum) {
-      navigate("/WillSearch_find1");
-    } else {
-      navigate("/WillSearch_nonefind");
-    }
-  };
-
   return (
     <ModalContainer>
       <ModalCloseContainer>
         <ModalClose onClick={closeModal}>닫기 X</ModalClose>
       </ModalCloseContainer>
+
       <TextInputContainer>
         <label>
           이름&nbsp; &nbsp;
@@ -207,7 +212,7 @@ const ModalBasic = (props) => {
             id="findName"
             value={name}
             type="text"
-            onChange={onChangeName}
+            onChange={(event)=> (setName(event.target.value))}           
             placeholder="이름을 입력해주세요."
           ></input>
         </label>
@@ -218,7 +223,7 @@ const ModalBasic = (props) => {
             id="findResidentNum"
             value={residentNum}
             type="text"
-            onChange={onChangeResidentNum}
+            onChange={(event)=> (setResidentNum(event.target.value))}           
             placeholder="주민번호를 입력해주세요."
           ></input>
         </label>
@@ -227,7 +232,7 @@ const ModalBasic = (props) => {
         <CommunityButton
           typo="검색"
           activated={name && residentNum}
-          onClick={goToPage}
+          onClick={Find}
         ></CommunityButton>
       </ButtonContainer>
     </ModalContainer>
