@@ -5,7 +5,7 @@ import InviteBox from '../../components/Invite/Invite';
 import * as WCss from '../../styles/WillWritinCss';
 //리덕스
 import {useSelector, useDispatch} from "react-redux"
-import {Open} from '../../redux/store';
+import { Open, addWill, setUser } from '../../redux/store';
 
 //이미지 
 import WillWritingTitle from '../../assets/img/WillWritingTitle.png';
@@ -171,8 +171,16 @@ function WillWriting_opener() {
         })
     }
     //리덕스
-    let a = useSelector((state) => { return state } )
-    let dispatch = useDispatch()
+    let a = useSelector((state) => { return state } );
+    const will = useSelector((state) => { return state.will } );
+    let dispatch = useDispatch();
+
+    const setWill = ()=>{
+        dispatch(setUser(a.login_user));
+        console.log('유언장 확인', will);
+        dispatch(addWill(will));
+        //console.log('추가', a.will_list);
+    }
     return (
         <WCss.Background>
             {console.log(a)}
@@ -207,7 +215,11 @@ function WillWriting_opener() {
                                 onChange={(event)=> {setrelationship(event.target.value)}} /> <Br/>
                         </InputContainer>
                         <OpenerBoxSmallText><br/>열람인으로 추가하면 자동으로 열람인에게 알림메시지가 발송됩니다.</OpenerBoxSmallText>
-                        <SaveButton onClick={()=>{addOpenerInfo(); console.log(OpenerInfo); dispatch(Open(OpenerInfo))}}>등록하기</SaveButton>
+                        <SaveButton onClick={()=>{
+                            addOpenerInfo(); 
+                            dispatch(Open(OpenerInfo)); 
+                            setWill();}}>
+                        등록하기</SaveButton>
                     </OpenerBox>
 
                     <SubTitle>나의 열람인</SubTitle>
@@ -222,7 +234,8 @@ function WillWriting_opener() {
                     <WCss.PrevButton onClick={() => (window.location.href = '/WillWriting_recording')}>
                         이전으로</WCss.PrevButton>
                     <WCss.NextButton 
-                    onClick={() => { window.location.href = '/WillWriting_complete1';}}>
+                    onClick={() => { window.location.href = '/WillWriting_complete1';
+                    }}>
                         다음으로</WCss.NextButton>
                 </WCss.ButtonContainer>
                 </WCss.Box>

@@ -5,7 +5,7 @@ import InviteBox from '../../components/Invite/Invite';
 import * as WCss from '../../styles/WillWritinCss';
 //리덕스
 import {useSelector, useDispatch} from "react-redux"
-import { Question1, Question2, Question3 } from '../../redux/store';
+import { addWill } from '../../redux/store';
 
 //이미지 
 import WillWritingTitle from '../../assets/img/WillWritingTitle.png';
@@ -81,15 +81,20 @@ color: #E0AF00;
 `
 
 function WillWriting_complete1() {
-    
+    //리덕스
+    let a = useSelector((state) => { return state } );
+
     const content = "...ddddd";
     const [show, setShow] = useState(false);
     const wait = setTimeout(() => {
         setShow(true);
         clearTimeout(wait); //메모리를 위해 타이머 해제
     }, 4000) //3초
+
     return (
         <Background>
+            {console.log(a.will_list)}
+            
             <WCss.Container>
                 <WCss.Img src={WillWritingTitle} />
                 <span> </span>

@@ -30,6 +30,7 @@ export let {LoginState, addUserInfo} = login_user.actions;
 let will = createSlice({
     name: 'will',
     initialState: {
+        name: '김철구',
         birth: '010725-1234567',
         question1: '일반 3일장 장례식',
         question2: [
@@ -90,11 +91,15 @@ let will = createSlice({
         },
         Open(state, action){
             state.open = action.payload;
+        },
+        setUser(state, action){
+            state.name = action.payload.name;
+            state.birth = action.payload.birth;
         }
     }
 
 })
-export let { Question1, Question2, Question3, Question4, Question5, Family, Property, Text, Open} = will.actions
+export let { setUser, Question1, Question2, Question3, Question4, Question5, Family, Property, Text, Open} = will.actions
 
 //시연을 위해 만든 유저리스트와 유언장 리스트
 let users = createSlice({
@@ -121,6 +126,7 @@ let will_list = createSlice({
     name: 'will_list',
     initialState:[
         {
+            name: '김철구',
             birth: '010725-1234567',
             question1: '일반 3일장 장례식',
             question2: [
@@ -181,8 +187,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, reducers);
 
 const store = configureStore({
-    reducer: 
-        persistedReducer, 
+    reducer: persistedReducer, 
     devTools: process.env.NODE_ENV !== 'production',
     middleware: [thunk],
 });

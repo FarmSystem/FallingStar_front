@@ -10,7 +10,7 @@ import axios from 'axios';
 
 //이미지 
 import WillWritingTitle from '../../assets/img/WillWritingTitle.png';
-import stepImg from '../../assets/img/WillWriting_step3.png';
+import stepImg from '../../assets/img/WillWriting_step4.png';
 import notice from '../../assets/img/notice.png';
 import searchimg from '../../assets/img/step3img.png';
 

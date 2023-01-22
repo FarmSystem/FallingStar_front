@@ -3,6 +3,9 @@ import styled from "styled-components";
 
 import searchLogo from "../../assets/img/SearchLogo.png";
 import writingNoFindImg from "../../assets/img/WritingNoFindImg.png";
+//리덕스
+import {useSelector} from "react-redux";
+import { useLocation } from "react-router-dom";
 
 const Background = styled.body`
 background-color: #E7E5E0;
@@ -93,6 +96,10 @@ const Button = styled.button`
 `;
 
 function WillSearch() {
+   //리덕스
+  let a = useSelector((state) => { return state.will_list } )
+  const find = useLocation();
+  {console.log(find)}
   return (
     <Background>
       <br />
@@ -113,10 +120,10 @@ function WillSearch() {
           <FindText>찾으시는 분</FindText>
           <br /> <br />
           <FindText>
-            이름:
+            이름: {find.state.name}
             <br />
             <br />
-            주민등록번호:
+            주민등록번호:{find.state.residentNum}
           </FindText>
         </FindTextContainer>
         <br />
