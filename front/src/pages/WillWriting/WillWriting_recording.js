@@ -5,7 +5,7 @@ import InviteBox from '../../components/Invite/Invite';
 import * as WCss from '../../styles/WillWritinCss';
 //리덕스
 import {useSelector, useDispatch} from "react-redux"
-import { add } from '../../redux/store';
+import { addRecord } from '../../redux/store';
 
 //이미지 
 import WillWritingTitle from '../../assets/img/WillWritingTitle.png';
@@ -224,6 +224,14 @@ function WillWriting_recording() {
     
     const play = () => { 
         const audio = new Audio(URL.createObjectURL(audioUrl)); // 😀😀😀
+        const user = a.login_user.name;
+        const record= URL.createObjectURL(audioUrl);
+        dispatch(addRecord({
+            user_id: user,
+            record_url: record
+        })); //녹음 url을 저장
+        console.log('생성된 녹음 url',URL.createObjectURL(audioUrl));
+
         //파일로 저장
         const sound = new File([audioUrl], "soundBlob", 
         {lastModified: new Date().getTime()}, [audioUrl]);
