@@ -331,10 +331,10 @@ function WillWriting_recording() {
                     </>}
                 </WCss.Box>
                 <WCss.ButtonContainer>
-                    <WCss.PrevButton onClick={() => (window.location.href = '/WillWriting_step5')}>
+                    <WCss.PrevButton onClick={() => (window.location.href = './WillWriting_step5')}>
                         이전으로</WCss.PrevButton>
                     <WCss.NextButton 
-                    onClick={() => { window.location.href = '/WillWriting_opener';}}>
+                    onClick={() => { window.location.href = './WillWriting_opener';}}>
                         다음으로</WCss.NextButton>
                 </WCss.ButtonContainer>
             </WCss.Container>

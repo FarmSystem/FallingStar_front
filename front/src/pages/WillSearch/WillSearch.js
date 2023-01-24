@@ -161,21 +161,21 @@ const ModalBasic = (props) => {
       tmp.birth === residentNum ? 
         tmp.name == name ?
         <>
-        {navigate("/WillSearch_find1",{
+        {navigate("./WillSearch_find1",{
           state: {
             name: name,
             residentNum: residentNum
           }
         })}
         </>:<>
-        {navigate("/WillSearch_nonefind",{
+        {navigate("./WillSearch_nonefind",{
           state: {
             name: name,
             residentNum: residentNum
           }
         })}
         </>:<>
-        {navigate("/WillSearch_nonefind",{
+        {navigate("./WillSearch_nonefind",{
           state: {
             name: name,
             residentNum: residentNum
