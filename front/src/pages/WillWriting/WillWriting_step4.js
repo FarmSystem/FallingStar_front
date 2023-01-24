@@ -111,7 +111,7 @@ function WillWriting_step4() {
                         <BoxButton>상속인 금융 거래 조회</BoxButton>
                     </WCss.SmallBox>
                     <WCss.TableBox>
-                        <WCss.TableTitle>등산</WCss.TableTitle>
+                        <WCss.TableTitle>동산</WCss.TableTitle>
                         <WCss.TableContent>항목 개수
                             <WCss.TableInput value = {House} type="text" placeholder="예시) 1" 
                             onChange={(event)=> {sethouse(event.target.value); console.log(House)}}/>

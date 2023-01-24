@@ -23,7 +23,7 @@ export const GlobalStyle = createGlobalStyle`
         width: 100%;
         min-height: 100%;
         margin: 0;
-        background: #F5F5F5;
+        
     }
     .App {
         display: flex;
