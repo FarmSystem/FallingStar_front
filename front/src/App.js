@@ -64,7 +64,6 @@ function App() {
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route index element={<Mainpage />} />
-          
           <Route path="introduce" element={<Introduce />} />
           <Route path="WillSearch" element={<WillSearch />} />
           <Route path="WillSearch_find1" element={<WillSearch_find1 />} />

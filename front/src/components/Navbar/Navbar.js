@@ -229,24 +229,24 @@ const Navbar = () => {
       <NavContainer>
         <Nav>
           <ul>
-            <li onClick={() => (window.location.href = "./FallingStar_front/introduce")}>
+            <li onClick={() => (window.location.href = "/FallingStar_front/introduce")}>
               <HomeIcon />
               <MenuText>소개페이지</MenuText>
             </li>
 
-            <li onClick={() => (window.location.href = "./FallingStar_front/WillWriting_notice")}>
+            <li onClick={() => (window.location.href = "/FallingStar_front/WillWriting_notice")}>
               <ModeEditIcon />
               <MenuText>유언장 작성하기</MenuText>
             </li>
-            <li onClick={() => (window.location.href = "./FallingStar_front/WillSearch")}>
+            <li onClick={() => (window.location.href = "/FallingStar_front/WillSearch")}>
               <DescriptionOutlinedIcon />
               <MenuText>유언장 찾기</MenuText>
             </li>
-            <li onClick={() => (window.location.href = "./FallingStar_front/Lawyer")}>
+            <li onClick={() => (window.location.href = "/FallingStar_front/Lawyer")}>
               <ContactMailIcon />
               <MenuText>변호사 찾기</MenuText>
             </li>
-            <li onClick={() => (window.location.href = "./FallingStar_front/Question")}>
+            <li onClick={() => (window.location.href = "/FallingStar_front/Question")}>
               <TextsmsIcon />
               <MenuText>법률 게시판</MenuText>
             </li>
