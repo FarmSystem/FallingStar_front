@@ -62,8 +62,7 @@ function App() {
       <GlobalStyle />
 
       <Routes>
-        <Route path="/" element={<Layout />}>
-          {" "}
+        <Route path='/' element={<Layout />}>
           <Route index element={<Mainpage />} />
           <Route path="introduce" element={<Introduce />} />
           <Route path="WillSearch" element={<WillSearch />} />
