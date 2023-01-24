@@ -137,7 +137,7 @@ function WillSearch_find1() {
         <DateText>작성 날짜</DateText>
         <br /> <br /> <br />
         <ButtonContainer>
-          <Button onClick={() => (navigate("/WillSearch_find2",{
+          <Button onClick={() => (navigate("./WillSearch_find2",{
           state: {
             name: name,
             residentNum: residentNum

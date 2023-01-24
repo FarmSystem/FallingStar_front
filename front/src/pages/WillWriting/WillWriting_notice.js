@@ -153,7 +153,7 @@ function WillWriting_notice() {
       </HelpIconWrapper>
 
       <ButtonContainer>
-        <Button onClick={() => (window.location.href = "/WillWriting_step1")}>
+        <Button onClick={() => (window.location.href = "./WillWriting_step1")}>
           유언장 작성하기
         </Button>
       </ButtonContainer>

@@ -86,7 +86,7 @@ function WillSearch() {
         <br /> <br /> <br />
         <ButtonContainer>
           <Button
-            onClick={() => (navigate("/WillSearch_complete",{
+            onClick={() => (navigate("./WillSearch_complete",{
               state: {
                 name: name,
                 residentNum: residentNum

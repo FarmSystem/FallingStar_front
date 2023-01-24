@@ -132,7 +132,7 @@ function WillSearch_complete() {
         <CompleteImg src={completeImg} />
         <br />
         <ButtonContainer>
-          <Button onClick={() => (window.location.href = "/MyPage")}>
+          <Button onClick={() => (window.location.href = "./MyPage")}>
             마이페이지 가기
           </Button>
         </ButtonContainer>

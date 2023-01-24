@@ -293,10 +293,10 @@ function WillWriting_step1() {
 
 
             <WCss.ButtonContainer>
-                <WCss.PrevButton onClick={() => (window.location.href = '/WillWriting_notice')}>
+                <WCss.PrevButton onClick={() => (window.location.href = './WillWriting_notice')}>
                     이전으로</WCss.PrevButton>
                 <WCss.NextButton 
-                onClick={() => { window.location.href = '/WillWriting_step2';
+                onClick={() => { window.location.href = './WillWriting_step2';
                 dispatch(Question1(Q1));
                 dispatch(Question2(inviteArrary));
                 dispatch(Question3(Q3))}}>

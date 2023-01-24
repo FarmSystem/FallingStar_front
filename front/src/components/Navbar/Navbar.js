@@ -13,6 +13,8 @@ import { addUser, addUserInfo, LoginState} from '../../redux/store';
 //모달
 import Modal from '../Modal/UserModal';
 
+import {Link} from "react-router-dom";
+import Introduce from "../../pages/Introduce";
 // ㅇㅇ
 const Wrapper = styled.div`
   position: absolute;
@@ -229,24 +231,25 @@ const Navbar = () => {
       <NavContainer>
         <Nav>
           <ul>
-            <li onClick={() => (window.location.href = "/FallingStar_front/introduce")}>
+            <li onClick={() => (window.location.href = "./introduce")}>
+              <Link to="Introduce"></Link>
               <HomeIcon />
               <MenuText>소개페이지</MenuText>
             </li>
 
-            <li onClick={() => (window.location.href = "/FallingStar_front/WillWriting_notice")}>
+            <li onClick={() => (window.location.href = "./WillWriting_notice")}>
               <ModeEditIcon />
               <MenuText>유언장 작성하기</MenuText>
             </li>
-            <li onClick={() => (window.location.href = "/FallingStar_front/WillSearch")}>
+            <li onClick={() => (window.location.href = "./WillSearch")}>
               <DescriptionOutlinedIcon />
               <MenuText>유언장 찾기</MenuText>
             </li>
-            <li onClick={() => (window.location.href = "/FallingStar_front/Lawyer")}>
+            <li onClick={() => (window.location.href = "./Lawyer")}>
               <ContactMailIcon />
               <MenuText>변호사 찾기</MenuText>
             </li>
-            <li onClick={() => (window.location.href = "/FallingStar_front/Question")}>
+            <li onClick={() => (window.location.href = "./Question")}>
               <TextsmsIcon />
               <MenuText>법률 게시판</MenuText>
             </li>

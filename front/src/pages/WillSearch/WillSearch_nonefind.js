@@ -135,7 +135,7 @@ function WillSearch() {
         <br />
         <br />
         <ButtonContainer>
-          <Button onClick={() => (window.location.href = "/WillSearch")}>
+          <Button onClick={() => (window.location.href = "./WillSearch")}>
             뒤로가기
           </Button>
         </ButtonContainer>

@@ -241,19 +241,19 @@ function Lawyer() {
         <LawyerImgContinaer>
           <LawyerImg
             src={lawyerImg}
-            onClick={() => (window.location.href = "/Lawyer_profile")}
+            onClick={() => (window.location.href = "./Lawyer_profile")}
           />
           <LawyerImg
             src={lawyerImg2}
-            onClick={() => (window.location.href = "/Lawyer_profile2")}
+            onClick={() => (window.location.href = "./Lawyer_profile2")}
           />
           <LawyerImg
             src={lawyerImg3}
-            onClick={() => (window.location.href = "/Lawyer_profile4")}
+            onClick={() => (window.location.href = "./Lawyer_profile4")}
           />
           <LawyerImg
             src={lawyerImg4}
-            onClick={() => (window.location.href = "/Lawyer_profile3")}
+            onClick={() => (window.location.href = "./Lawyer_profile3")}
           />
         </LawyerImgContinaer>
         <br />

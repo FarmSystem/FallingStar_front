@@ -199,11 +199,11 @@ function WillWriting_step3() {
 
                 </WCss.Box>
                 <WCss.ButtonContainer>
-                    <WCss.PrevButton onClick={() => (window.location.href = '/WillWriting_step2')}>
+                    <WCss.PrevButton onClick={() => (window.location.href = './WillWriting_step2')}>
                         이전으로</WCss.PrevButton>
                     <WCss.NextButton 
                     onClick={() => { 
-                        addFamily(); window.location.href = '/WillWriting_step4'}}>
+                        addFamily(); window.location.href = './WillWriting_step4'}}>
                         다음으로</WCss.NextButton>
                     
                 </WCss.ButtonContainer>
