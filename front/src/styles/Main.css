@@ -1,0 +1,26 @@
+.container{
+    background: linear-gradient(-45deg, #ffdd46, #5a5a56, #0a6e93, #bb6897);
+    animation: gradientBG 5s ease infinite;
+    padding-bottom:50px;
+    min-height:100%;
+    height: auto;
+    margin-bottom: -10%;
+
+    background-size: 400% 400%;
+
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    1000% {
+        background-position: 0% 50%;
+    }
+
+}

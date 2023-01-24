@@ -10,9 +10,11 @@ import icon3 from '../assets/img/buttonicon3.png';
 import {useSelector, useDispatch} from "react-redux";
 import { LoginState } from '../redux/store';
 
+import "../styles/Main.css";
+
 const Main = styled.body`
-background-color: #6D6B64;
-padding-bottom: 100px;
+background: linear-gradient(170.32deg, #434139 7.81%, #B7B3AB 87.61%);
+padding-bottom:40px;
 min-height:100%
 height: auto;
 `
@@ -67,8 +69,8 @@ const Text2 = styled.div`
 font-family: 'Inter';
 font-style: normal;
 font-weight: 700;
-font-size: 15px;
-line-height: 20px;
+font-size: 20px;
+line-height: 30px;
 text-align: center;
 
 color: #FFFFFF;
@@ -91,18 +93,19 @@ color: #FFFFFF;
 const Button = styled.button`
 font-family: 'Inter';
 font-style: normal;
-font-weight: 500;
-font-size: 13px;
+font-weight: 800;
+font-size: 16px;
 line-height: 18px;
 text-align: center;
 
 background: #FFFFFF;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.48);
-border-radius: 7px;
+border-radius: 10px;
 padding:7px;
-margin: 12px;
+margin: 20px;
 width: 150px;
-
+border: none;
+height: 40px;
 z-index:-2;
 `
 const Img3 = styled.img`
@@ -119,6 +122,7 @@ function Mainpage() {
 
     return (
         <Main>
+            <div className='container'>
             <br/><br/><br/><br/><br/><br/>
             <TitleText>당신의 마지막 말이 소중히 보관되길,</TitleText>
             <br/>
@@ -148,7 +152,7 @@ function Mainpage() {
             <Text3>이름, 주민등록번호를 통해 유언장의 유무를 검색하실 수 있고 <br/>별세 전담변호사를 통해 확인절차를 거친 뒤,
             <br/>법률문서로 유언장을 찾으실 수 있습니다. </Text3>
             
-
+            </div>
         </Main>
     )
 }
