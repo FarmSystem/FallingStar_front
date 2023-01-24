@@ -171,6 +171,21 @@ let will_list = createSlice({
 })
 export let {addWill} = will_list.actions
 
+let record = createSlice({
+    name: 'record',
+    initialState: [
+        {
+            user_id: ' ',
+            record_url: 'http://'
+        },
+    ],
+    reducers:{
+        addRecord(state, action){
+            state.push(action.payload);
+        }
+    }
+})
+export let {addRecord} = record.actions
 
 //리듀설 모아주기
 const reducers = combineReducers({
@@ -178,6 +193,7 @@ const reducers = combineReducers({
     users: users.reducer,
     will_list: will_list.reducer,
     login_user: login_user.reducer,
+    record: record.reducer,
 });
 
 //redux-persist
