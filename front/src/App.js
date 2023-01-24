@@ -64,7 +64,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           {" "}
-          //상위 라우터 요걸해줘야 레이아웃 적용됨
           <Route index element={<Mainpage />} />
           <Route path="introduce" element={<Introduce />} />
           <Route path="WillSearch" element={<WillSearch />} />
