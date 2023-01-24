@@ -18,7 +18,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>  
-        <BrowserRouter basename='FallingStar_front'>
+        <BrowserRouter basename='http://lywon725.github.io/FallingStar_front/'>
           <App />
         </BrowserRouter>
       </PersistGate>
