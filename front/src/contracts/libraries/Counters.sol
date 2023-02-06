@@ -14,6 +14,8 @@ import './SafeMath.sol';
  * directly accessed.
  */
 
+
+//깃
  library Counters {
     using SafeMath for uint256; 
 
